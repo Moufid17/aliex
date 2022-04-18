@@ -5,6 +5,12 @@ docker-compose build --pull --no-cache
 docker-compose up -d
 ```
 
+## SYMFONY BUNDLES
+```
+composer require symfony/maker-bundle --dev
+composer require doctrine/annotations
+```
+
 ```
 # URL
 http://127.0.0.1

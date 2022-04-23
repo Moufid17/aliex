@@ -7,8 +7,7 @@ docker-compose up -d
 
 ## SYMFONY BUNDLES
 ```
-composer require symfony/maker-bundle --dev
-composer require doctrine/annotations
+composer require webapp
 ```
 
 ```

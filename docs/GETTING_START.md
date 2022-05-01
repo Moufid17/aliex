@@ -56,3 +56,9 @@ docker compose exec php composer require --dev orm-fixtures
 docker compose exec php composer require --dev fzaninotto/faker
 ```
 
+#### WebpackEncore
+- Run dev and encore dev :
+    ```
+    npm run dev
+    ```
+    >[source](https://symfony.com/doc/current/frontend/encore/simple-example.html#configuring-encore-webpack):

@@ -22,6 +22,7 @@ docker-compose up -d
     - Front : `http://127.0.0.1`
     - Back : `http://127.0.0.1/admin/`
     > Routing system is redefine into `/config/routes/annotations.yaml`. Also all controller routing and template configuration.
+    > Routing system is redefine into `./src/Kernel.php`.
 - Env DB (if it is not define yet):
     ```
     DATABASE_URL="postgresql://postgres:password@db:5432/db?serverVersion=13&charset=utf8"
@@ -73,9 +74,7 @@ docker-compose up -d
         ```
         sudo chown -R moufid src
         ```
-
-
-    
+- [404 ERROR](https://symfony.com/doc/current/controller.html#managing-errors-and-404-pages)
 ### Important concepts :
 1. `Params converter` : Definir l'entité comme paramètre du *controlleur* aulieu de l'id par exemple. 
 

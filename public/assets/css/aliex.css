@@ -1,0 +1,8 @@
+.footer-custom{
+    text-align: center;
+    position: fixed !important;
+    bottom:0;
+    width: 100%;
+    background-color: rgb(56, 32, 70);
+    padding: 5px;
+}

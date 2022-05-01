@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-// use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -53,21 +53,16 @@ class RegisterType extends AbstractType
                     ]    
                 ]
             )
-            ->add('password',PasswordType::class,[
-                    'label' => 'Password',
+            ->add('password', RepeatedType::class,
+                [
+                    'type' => PasswordType::class,
                     'required' => true,
-                    'attr' => [
-                        'placeholder' => 'Password'
-                    ]
-                ]
-            )
-            ->add('cpassword',PasswordType::class,[
-                    'label' => 'Confirm Password',
-                    'required' => true,
-                    'mapped' => false,
-                    'attr' => [
-                        'placeholder' => 'Confirm Password'
-                    ]
+                    'invalid_message' => 'le mot de passe et la confirmation du mot de passe doivent être conforme.',
+                    'options' => [
+                        'attr' => ['class' => 'password-field']
+                    ],
+                    'first_options' => ['label' => 'Mot de passe'],
+                    'second_options' => ['label' => 'Confirmer mot de passe']
                 ]
             )
             ->add('agreeTerms',CheckboxType::class,[
@@ -76,7 +71,6 @@ class RegisterType extends AbstractType
                     'mapped' => false,
                 ]
             )
-
         ;
     }
 

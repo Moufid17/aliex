@@ -15,3 +15,8 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+###> files ###
+/template/template.html.twig
+###< files ###
+

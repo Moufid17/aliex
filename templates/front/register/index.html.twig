@@ -5,5 +5,8 @@
 {% block content %}
     <h2 class="text-center">Inscription</h2>
     <hr>
-    {{ form(register_form) }}
+    {{ form_start(register_form) }}
+        {{ form_rest(register_form) }}
+        <button type="submit" class="btn btn-primary">S'incrire</button>
+    {{ form_end(register_form) }}
 {% endblock %}

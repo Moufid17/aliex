@@ -33,7 +33,7 @@ class RegisterController extends AbstractController
             // Update password
             $user->setPassword($pwd_hash);
             // persist and flush
-            dd($user->getRoles());
+            // dd($user->getRoles());
             $entityManager->persist($user);
             $entityManager->flush();
         }

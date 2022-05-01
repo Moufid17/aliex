@@ -61,8 +61,12 @@ class RegisterType extends AbstractType
                     'options' => [
                         'attr' => ['class' => 'password-field']
                     ],
-                    'first_options' => ['label' => 'Mot de passe'],
-                    'second_options' => ['label' => 'Confirmer mot de passe']
+                    'first_options' => ['label' => 'Mot de passe', 
+                        'attr'=> ['placeholder' => 'Mot de passe']
+                    ],
+                    'second_options' => ['label' => 'Confirmer mot de passe',
+                        'attr'=> ['placeholder' => 'Confirmer mot de passe']
+                    ]
                 ]
             )
             ->add('agreeTerms',CheckboxType::class,[

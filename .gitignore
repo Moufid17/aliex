@@ -17,6 +17,10 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 ###> files ###
-/template/template.html.twig
+template.html.twig
 ###< files ###
+
+###> folders ###
+/.vscode/
+###< folders ###
 

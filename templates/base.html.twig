@@ -50,7 +50,7 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">ALIEX</a>
+                <a class="navbar-brand" href="{{ path('default_index') }}">ALIEX</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -77,16 +77,16 @@
                             {% if app.user is null %}
                             <li class="nav-item">
                                 {# <a class="nav-link" aria-current="page" href="{{ path('app_login') }}">Login</a> #}
-                                <a class="nav-link" aria-current="page" href="#">Login</a>
+                                <a class="nav-link" aria-current="page" href="{{ path('app_login')}}">Login</a>
                             </li>
                             <li class="nav-item">
                                 {# <a class="nav-link" aria-current="page" href="{{ path('register') }}">Register</a> #}
-                                <a class="nav-link" aria-current="page" href="#">Register</a>
+                                <a class="nav-link" aria-current="page" href="{{ path('app_register') }}">Register</a>
                             </li>
                             {% else %}
                             <li class="nav-item">
                                 {# <a class="nav-link" aria-current="page" href="{{ path('account') }}">MyAccount({{app.user.firstname}})</a> #}
-                                <a class="nav-link" aria-current="page" href="#">MyAccount({{app.user.firstname}})</a>
+                                <a class="nav-link" aria-current="page" href="{{ path('app_account') }}">MyAccount({{app.user.firstname}})</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="{{ path('app_logout') }}">Logout</a>

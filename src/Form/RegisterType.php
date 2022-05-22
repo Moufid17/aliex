@@ -57,7 +57,7 @@ class RegisterType extends AbstractType
                 [
                     'type' => PasswordType::class,
                     'required' => true,
-                    'invalid_message' => 'le mot de passe et la confirmation du mot de passe doivent être conforme.',
+                    'invalid_message' => 'Le mot de passe et la confirmation du mot de passe doivent être conforme.',
                     'options' => [
                         'attr' => ['class' => 'password-field']
                     ],
@@ -70,7 +70,7 @@ class RegisterType extends AbstractType
                 ]
             )
             ->add('agreeTerms',CheckboxType::class,[
-                    'label' => 'Accept our user terms',
+                    'label' => 'J\'ai lu, j\'ai compris et j\'accepte les conditions générales d\'utilisation de Aliex Marketplace',
                     'required' => true,
                     'mapped' => false,
                 ]

@@ -503,6 +503,7 @@
     "twig/twig": {
         "version": "v3.3.10"
     },
+<<<<<<< HEAD
     "vich/uploader-bundle": {
         "version": "1.19",
         "recipe": {
@@ -515,6 +516,8 @@
             "config/packages/vich_uploader.yaml"
         ]
     },
+=======
+>>>>>>> b615e1522ec8cd4d18de026e7c47bf993567ad96
     "webmozart/assert": {
         "version": "1.10.0"
     }

@@ -3,9 +3,49 @@
 {% block carousel %}{% endblock %}
 
 {% block content %}
+  <!-- SESSION : SEARCH BY CATEGORY --> 
+  <div class="">
+    <div class="mx-auto">
+      <p class="">Des millions de petites annonces et autant d’occasions de se faire plaisir</p>
+      <div class="row">
+        <div class="custom-control custom-radio custom-control-inline col-3 col-sm-2 mb-2 mx-2">
+          <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+          <label class="custom-control-label" for="customRadioInline1">Offres</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline col-3 col-2">
+          <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+          <label class="custom-control-label" for="customRadioInline2">Demandes</label>
+        </div>
+      </div>
+      {# src: https://getbootstrap.com/docs/4.0/components/forms/#browser-defaults #}
+      
+      <form class="form-row d-flex justify-content-between">
+        <div class="col-sm-5 col-lg-6 mb-3 mx-2">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input class="form-control" type="text" placeholder="Que recherchez -vous?">
+          </div>
+        </div>
+        <div class="col-sm-4 col-lg-4 mb-4">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-list"></i></span>
+            <input class="form-control rounded-0" type="text" placeholder="Catégorie">
+          </div>
+        </div>
+        <div class="col-sm-2 col-lg-2 mb-2">
+          <div class="input-group">
+            <input class="form-control rounded-0" type="text" placeholder="Ville">
+            <span class="input-group-text"><i class="bi bi-geo-alt" ></i></span>
+          </div>
+        </div>
+      </form>
+      {# Prix | src : https://getbootstrap.com/docs/5.0/forms/range/#min-and-max #}
+    </div><!-- /.col-lg-4 -->
+  </div><!-- /.row -->
 
+  <!-- SESSION : SEARCH BY ? --> 
   <div class="row">
-    {# {% if app.user is not null %} <h2> Hello {{ app.user.firstname }}!</h2> {% endif %} #}
+    {% if app.user is not null %} <h2> Hello {{ app.user.firstname }}!</h2> {% endif %}
     <hr class="featurette-divider">
     <div class="col-lg-4">
       <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>

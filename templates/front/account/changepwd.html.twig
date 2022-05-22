@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Changer Mot de passe - Aliex{% endblock %}
+
+{% block content %}
+
+    <div>
+        <h1>Changer mot de passe</h1>
+        <hr>
+        {{ form_start(form) }}
+            {{ form_rest(form) }}
+            <button class="btn btn-sm btn-primary" type="submit">
+                Changer
+            </button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

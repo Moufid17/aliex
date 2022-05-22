@@ -17,7 +17,7 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 ###> files ###
-template.html.twig
+aliex_db_con_1.session.sql
 ###< files ###
 
 ###> folders ###

@@ -4,8 +4,10 @@
 
 {% block content %}
     <h2>Bonjour {{ app.user.username }} .</h2>
-    - Modifier mdp
-    - Modifier mes informations
-    - Mon panier
-    - Mes offres
+    <ul class="p-0 d-flex flex-row align-items-start">
+        <li class="btn btn-primary ml-0 m-2"> <a href="{{ path('app_account_cpwd') }}" class="text-white text-decoration-none" >Modifier mdp</a></li>
+        {# <li class="btn btn-primary m-2"> <a href="{{ path('') }}" class="text-white text-decoration-none" >Modifier mes informations</a></li>
+        <li class="btn btn-primary m-2"> <a href="{{ path('') }}" class="text-white text-decoration-none" >Mon panier</a></li>
+        <li class="btn btn-primary m-2"> <a href="{{ path('') }}" class="text-white text-decoration-none" >Mes offres</a></li> #}
+    </ul>
 {% endblock %}

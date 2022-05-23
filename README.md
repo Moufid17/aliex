@@ -1,6 +1,6 @@
 __PROJECT NAME__: Aliex
 ### __Description__ :
-    > Like an [leboncoin]() lite, it will permit to buy and sell a stuff.
+> Like a [leboncoin](https://www.leboncoin.fr/) lite, it will permit to buy and sell many stuff.
 #### - __SERVICES__ :
 - Deposit offer
 - Buy stuff

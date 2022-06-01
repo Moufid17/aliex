@@ -9,14 +9,14 @@
       <div class="col-md-6 border-end">
         <div class="d-flex flex-column justify-content-center">
           <div class="product_main_image">	
-            <img src="{{ '.jpg' in product.imageFilename ? asset('images/'~ product.imageFilename ):asset('images/default-product_main_image.jpg') }}" id="product_main_product_image" width="350">
+            <img src="{{ '.jpg' in product.imageFilename ? asset('images/'~ product.imageFilename ):asset('images/products/default-product_main_image.jpg') }}" id="product_main_product_image" width="350">
           </div>
           <div class="product_thumbnail_images">
             <ul id="product_thumbnail">
-              <li><img onclick="changeImageProduct(this)" src="{{ asset('images/default-product_main_image.jpg') }}" width="70"></li>
-              <li><img onclick="changeImageProduct(this)" src="{{ asset('images/default-product_main_image_sub0.jpg') }}" width="70"></li>
-              <li><img onclick="changeImageProduct(this)" src="{{ asset('images/default-product_main_image_sub1.jpg') }}" width="70"></li>
-              <li><img onclick="changeImageProduct(this)" src="{{ asset('images/default-product_main_image_sub2.jpg') }}" width="70"></li>
+              <li><img onclick="changeImageProduct(this)" src="{{ asset('images/products/default-product_main_image.jpg') }}" width="70"></li>
+              <li><img onclick="changeImageProduct(this)" src="{{ asset('images/products/default-product_main_image_sub0.jpg') }}" width="70"></li>
+              <li><img onclick="changeImageProduct(this)" src="{{ asset('images/products/default-product_main_image_sub1.jpg') }}" width="70"></li>
+              <li><img onclick="changeImageProduct(this)" src="{{ asset('images/products/default-product_main_image_sub2.jpg') }}" width="70"></li>
             </ul>
           </div>
         </div>

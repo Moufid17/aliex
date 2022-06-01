@@ -32,6 +32,9 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private $owner;
 
+    #[ORM\Column(type: 'float')]
+    private $price;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class Product
     public function setOwner(?User $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

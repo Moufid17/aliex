@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits - Aliex{% endblock %}
+
+{% block content %}
+    <h1>PRODUITS</h1>
+    <div class="row">
+    {% for product in products %}
+        <div class="col-md-4 card">
+            <a href="{{ path('app_show_product',{'id': product.id}) }}" id="product_main_product_image"><img class="card-img-top" src="{{ '.jpg' in product.imageFilename ? asset('images/'~ product.imageFilename ):asset('images/default-product_main_image.jpg') }}" alt="Card image cap"></a>
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <h5 class="card-title ">26€</h5>
+                {# <h5 class="card-title">{{ product.price }}</h5> #}
+                {# <p class="card-text">{{ product.description|e }}</p> #}
+                
+                <a href="#" class=""><button class="btn btn-dark">Ajouter au panier</button></a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

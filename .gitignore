@@ -18,9 +18,11 @@ yarn-error.log
 
 ###> files ###
 aliex_db_con_1.session.sql
+
 ###< files ###
 
 ###> folders ###
 /.vscode/
+/public/images/
 ###< folders ###
 

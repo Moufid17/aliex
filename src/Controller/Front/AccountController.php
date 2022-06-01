@@ -4,7 +4,7 @@ namespace App\Controller\Front;
 
 use App\Form\ChangePasswordType;
 use Symfony\Component\HttpFoundation\Request;
-
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +23,7 @@ class AccountController extends AbstractController
         return $this->render('front/account/index.html.twig');
     }
 
-    #[Route('/mon-compte/modifier-mot-de-passe', name: 'app_account_cpwd')]
+    #[Route('/mon-compte/modifier-mot-de-passe', name: 'app_account_cpwd', methods:['GET', 'POST'])]
     public function account_changePassword(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em): Response
     {
         // Create Form
@@ -52,6 +52,17 @@ class AccountController extends AbstractController
             [
                 'form' => $form->createView(),
             ]
+        );
+    }
+
+    #[Route('/mon-compte/offres', name: 'app_account_offers', methods:['GET', 'POST'])]
+    public function offers(ProductRepository $productRepository):Response 
+    {
+        $products = $productRepository->findByOwner($this->getUser());
+        return $this->render('front/account/offers.html.twig',
+            [
+                'products' => $products,
+            ]        
         );
     }
 }

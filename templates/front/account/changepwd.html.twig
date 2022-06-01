@@ -14,4 +14,7 @@
             </button>
         {{ form_end(form) }}
     </div>
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate_') }}"
+    >
 {% endblock %}

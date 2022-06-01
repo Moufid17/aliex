@@ -75,8 +75,23 @@ docker-compose up -d
         sudo chown -R moufid src
         ```
 
-
-    
+- #### CONTROLER : RENDER vs RENDERFORM
+    - render : 
+        ```
+        $this->render('path',
+            [
+                'form' => $form->createView(),
+            ]
+        )
+        ```
+    - renderForm : 
+        ```
+        $this->renderForm('path',
+            [
+                'form' => $form,
+            ]
+        )
+        ```
 ### Important concepts :
 1. `Params converter` : Definir l'entité comme paramètre du *controlleur* aulieu de l'id par exemple. 
 

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter produit - Aliex{% endblock %}
+
+{% block content %}
+<div>
+    <h1>Ajouter un produit</h1>
+    <hr>
+    {{ form_start(form) }}
+        {{ form_rest(form) }}
+        <button class="btn btn-sm btn-primary" type="submit">
+            Ajouter
+        </button>
+    {{ form_end(form) }}
+</div>
+<input type="hidden" name="_csrf_token"
+    value="{{ csrf_token('authenticate_') }}"
+>
+{% endblock %}

@@ -1,10 +1,9 @@
 <div class="card col-md-3 m-2">
-    <a href="{{ path('app_show_product',{'id': this.card.id}) }}" id="product_main_product_image"><img class="card-img-top" src="{{ '.jpg' in this.card.imageFilename ? asset('images/'~ product.imageFilename ):asset('images/default-product_main_image.jpg') }}" alt="Card image cap"></a>
+    <a href="{{ path('app_show_product',{'id': this.card.id}) }}" id="product_main_product_image"><img class="card-img-top" src="{{ '.jpg' in this.card.imageFilename ? asset('images/'~ this.card.imageFilename ):asset('images/default-product_main_image.jpg') }}" alt="Card image cap"></a>
     <div class="card-body text-center">
         <h5 class="card-title">{{ this.card.name }}</h5>
-        <h5 class="card-title ">$430.99</h5>
+        <h5 class="card-title ">{{'430.99'|format_currency('EUR')}}</h5>
         {# <h5 class="card-title">{{ this.card.price }}</h5> #}
-        {# <p class="card-text">{{ this.card.description|e }}</p> #}
         <a href="#" class=""><button class="btn btn-dark">Ajouter au panier</button></a>
     </div>
 </div>

@@ -13,7 +13,6 @@ class CardComponent
 
     public function __construct(private ProductRepository $productRepository)
     {
-
     }
 
     public function getCard(): Product

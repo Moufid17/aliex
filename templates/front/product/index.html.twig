@@ -7,7 +7,7 @@
     <div class="row">
     {% for product in products %}
         {{ component('card', {'id' : product.id}) }}
-    {% else %}
+        {% else %}
         <div class="col-6">
             <p> Aucun produit disponible.</p>
         </div>

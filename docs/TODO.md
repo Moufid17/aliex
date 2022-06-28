@@ -7,10 +7,9 @@
 **GENERAL CONFIG**
 - [x] Architecture back and frontend
 - [x] set up private view : USER.
-
-- *[ ] Setup product [VOTER](https://symfony.com/doc/current/security/voters.html)
+- [x] Setup `product` [VOTER](https://symfony.com/doc/current/security/voters.html)
   > NB: 
-  - [ ] [Define](https://github.com/AdrienMrn/Symfony2022-IWJ/blob/master/config/packages/security.yaml) user's role in _config/packages/_`security.yaml`:
+  - [x] [Define](https://github.com/AdrienMrn/Symfony2022-IWJ/blob/master/config/packages/security.yaml) user's role in _config/packages/_`security.yaml`:
     ```
     security:
       role_hierachy:
@@ -23,9 +22,9 @@
           - { path: ^/inscription, roles: PUBLIC_ACCESS}
           - { path: ^/, roles: ROLE_USER}
     ```
-  - [ ] [Define](https://github.com/AdrienMrn/Symfony2022-IWJ/blob/master/src/Security/BrandVoter.php) `ProductVoter.php` in _src/security/_ 
+  - [x] [Define](https://github.com/AdrienMrn/Symfony2022-IWJ/blob/master/src/Security/BrandVoter.php) `ProductVoter.php` in _src/security/_ 
 
-  - [ ] [Update](https://github.com/AdrienMrn/Symfony2022-IWJ/blob/master/src/Controller/Back/BrandController.php) in `ProductController` :
+  - [x] [Update](https://github.com/AdrienMrn/Symfony2022-IWJ/blob/master/src/Controller/Back/BrandController.php) in `ProductController` :
     - example :
       ```
       ...
@@ -40,9 +39,9 @@
       ...
       }
       ```
-
-- *1[ ] Setup product [Vich_Uploader](https://symfony.com/bundles/EasyAdminBundle/2.x/integration/vichuploaderbundle.html#customizing-form-fields-for-image-and-file-uploading)
-  - [github](https://github.com/dustin10/VichUploaderBundle)
+- [ ] Setup [Twig component](https://github.com/weaverryan/live-demo)
+- *[ ] Setup product [Vich_Uploader](https://symfony.com/bundles/EasyAdminBundle/2.x/integration/vichuploaderbundle.html#customizing-form-fields-for-image-and-file-uploading)
+  - [github](https://github.com/dustin10/VichUploaderBundle/blob/master/docs/usage.md)
 
 
 **LOGIN SYSTEM**
@@ -50,11 +49,20 @@
 - [x] Register
 - [x] Login/logout
 - [x] Reset Password
-- *3[ ] Notification/Email after Registering, reset password and more
+- *2[ ] Notification/Email after Registering, reset password and more
   - [mailer](https://symfony.com/doc/current/mailer.html#installation)
+  - [serialize](https://symfony.com/doc/current/components/mime.html)
+
+**USER**
+- [ ] Dashboard Template
+- [ ] Mes offres
+- [ ] Mon panier
+- [ ] Mes Adresses de livraison
+
 
 **ADMIN**
-- *2[ ] Definir ADMIN template
+- *1[ ] Definir ADMIN template
+- Graph
 
 **SERVICES**
   - ANNONCES:
@@ -63,6 +71,8 @@
     - [ ] Ajout/stockage de fichier produit
   - FILTRE :
     - [ ] Rechecher de produits (par categorie, ville, vendeur, popularité).
+      - [ ] Page produit
+      - [ ] Page d'acceuil
   - CART :
     - [ ] Panier utilisateur (Ajouter/Retirer/ Suppression du panier)
   - PAIEMENT :
@@ -75,3 +85,8 @@
     - [ ] Stockage
   - TRANSPORT :
     - [ ] Confirmation d'envoie et de réception de Produit
+
+
+### RESSOURCES :
+
+- [Doctrine Extensions (Timestampable, Translatable, etc.)](https://symfony.com/doc/current/doctrine.html#doctrine-extensions-timestampable-translatable-etc)

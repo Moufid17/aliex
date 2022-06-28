@@ -10,4 +10,6 @@
         {{ form_row(form.brochure) }}
     {{ form_end(form) }}
     ```
-- [For  with conditon](https://twig.symfony.com/doc/2.x/tags/for.html#adding-a-condition)
+- [Form  with conditon](https://twig.symfony.com/doc/2.x/tags/for.html#adding-a-condition)
+
+- [format_currency](https://twig.symfony.com/doc/3.x/filters/format_currency.html)

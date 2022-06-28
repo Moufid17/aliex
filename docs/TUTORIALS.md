@@ -235,3 +235,4 @@ docker-compose up -d
     ])
     ```
 7. [DateType with widget](https://symfony.com/doc/current/reference/forms/types/date.html):
+8. Back to last migration : `doctrine:migrations:rollup`

@@ -7,6 +7,7 @@ use App\Entity\Product;
 use App\Form\ProductType;
 use App\Security\ProductVoter;
 use App\Repository\ProductRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -29,26 +30,26 @@ class ProductController extends AbstractController
     #[Route('/produits/creer', name: 'app_new_product', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
-        // New category
-        // $category = new Category();
-        // $category->setName('Brocante Model 1');
-        // $em->persist($category);
-        // $em->flush();
-        
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
         }
 
         // New product
         $product = new Product();
-        $product->setOwner($this->getUser());
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid())
         {
-            // dd($product);
+            $imageFileData = $form->getData()->getImageFile();
+            $originalImageName = $imageFileData->getClientOriginalName();
+            $fileSize = $imageFileData->getSize();
+            
             $this->getUser()->addProduct($product);
+            $product->setOwner($this->getUser());
+            $product->setImageName($originalImageName);
+            $product->setImageSize($fileSize);
+
             $em->persist($product);
             $em->flush();
 
@@ -83,7 +84,7 @@ class ProductController extends AbstractController
         );
     }
 
-    #[Route('/produits/{id}', name: 'app_show_product', methods: ['GET', 'POST'])]
+    #[Route('/produits/{id}', name: 'app_show_product', methods: ['GET'])]
     public function show(Product $product): Response
     {
         return $this->render('front/product/show.html.twig',

@@ -3,7 +3,7 @@
 {% block title %}Mes offres - Aliex{% endblock %}
 
 {% block content %}
-    <h1>PRODUITS</h1>
+    {# <h1>PRODUITS</h1>
     <div class="row">
     {% for product in products %}
         <div class="col-md-4 card">
@@ -11,11 +11,18 @@
             <div class="card-body text-center">
                 <h5 class="card-title">{{ product.name }}</h5>
                 <h5 class="card-title ">26€</h5>
-                {# <h5 class="card-title">{{ product.price }}</h5> #}
-                {# <p class="card-text">{{ product.description|e }}</p> #}
-                
                 <a href="#" class=""><button class="btn btn-dark">Ajouter au panier</button></a>
             </div>
+        </div>
+    {% endfor %} 
+    </div>#}
+    <h1>Mes Offres</h1>
+    <div class="row">
+    {% for product in products %}
+        {{ component('card', {'id' : product.id}) }}
+        {% else %}
+        <div class="col-6">
+            <p> Vous n'aviez proposer aucune.</p>
         </div>
     {% endfor %}
     </div>

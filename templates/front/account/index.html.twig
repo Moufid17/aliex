@@ -3,11 +3,106 @@
 {% block title %}{{ app.user.username }} - Aliex{% endblock %}
 
 {% block content %}
-    <h2>Bonjour {{ app.user.username }} .</h2>
-    <ul class="p-0 d-flex flex-row align-items-start">
-        <li class="ml-0 m-2 list-style-none"> <a href="{{ path('app_account_cpwd') }}" class="" ><button class="btn btn-primary text-white text-decoration-none ">Modifier mdp</button></a></li>
-        <li class="btn btn-primary m-2"> <a href="{{ path('app_account_offers') }}" class="text-white text-decoration-none" >Modifier mes informations</a></li>
-        {# <li class="btn btn-primary m-2"> <a href="{{ path('') }}" class="text-white text-decoration-none" >Mes offres</a></li> #} 
-        {#<li class="btn btn-primary m-2"> <a href="{{ path('') }}" class="text-white text-decoration-none" >Mon panier</a></li>#}
-    </ul>
+<div class="account-main-container">
+    <!-- HEADER -->
+    <header class="account-header account-block">
+        <ul class="account-header-menu account-horizontal-list">
+            <li>
+                <a class="account-header-menu-tab" href="#1"><span class="icon entypo-cog account-scnd-font-color"></span>Settings</a>
+            </li>
+            <li>
+                <a class="account-header-menu-tab" href="#2"><span class="icon fontawesome-user account-scnd-font-color"></span>Account</a>
+            </li>
+            <li>
+                <a class="account-header-menu-tab" href="#3"><span class="icon fontawesome-envelope account-scnd-font-color"></span>Messages</a>
+                <a class="account-header-menu-number" href="#4">5</a>
+            </li>
+            <li>
+                <a class="account-header-menu-tab" href="#5"><span class="icon fontawesome-star-empty account-scnd-font-color"></span>Favorites</a>
+            </li>
+        </ul>
+    </header>
+    <div class="">
+        <!-- LEFT-CONTAINER -->
+        <div class="account-left-container account-container">
+            <div class="account-menu-box account-block"> <!-- MENU BOX (LEFT-CONTAINER) -->
+                <h2 class="account-titular">MENU</h2>
+                <ul class="account-menu-box-menu">
+                    <li>
+                        <a class="account-menu-box-tab" href="{{ path('app_account_offers') }}"><span class="icon fontawesome-list account-scnd-font-color"></span>Mes offres<div class="account-menu-box-number">{{app.user.products|length}}</div></a>                            
+                    </li>
+                    <li>
+                        <a class="account-menu-box-tab" href="#"><span class="icon fontawesome-shopping-cart account-scnd-font-color"></span>Mes Commandes<div class="account-menu-box-number">1</div></a>                            
+                    </li>
+                    <li>
+                        <a class="account-menu-box-tab" href="{{ path('app_account_cpwd') }}"><span class="icon entypo-eye account-scnd-font-color"></span>Modifier Mot de passe</a>                            
+                    </li>
+                    <li>
+                        <a class="account-menu-box-tab" href="#10"><span class="icon entypo-location account-scnd-font-color"></span>Modifier Adresse</a>                            
+                    </li>
+                    <li>
+                        <a class="account-menu-box-tab" href="#12"><span class="icon entypo-cog account-scnd-font-color"></span>Account Settings</a>
+                    </li>
+                    <li>
+                        <a class="account-menu-box-tab" href="#13"><span class="icon entypo-chart-line account-scnd-font-color"></span>Statistics</a>
+                    </li>      
+                    <li>
+                        <a class="account-menu-box-tab" href="#13"><span class="icon entypo-chart-line account-scnd-font-color"></span>Statistic</a>
+                    </li>                     
+                </ul>
+            </div>
+        </div>
+
+        <!-- MIDDLE-CONTAINER -->
+        <div class="account-middle-container account-container">
+            <div class="account-profile account-block"> <!-- PROFILE (MIDDLE-CONTAINER) -->
+                <a class="add-button" href="#28"><span class="icon entypo-plus account-scnd-font-color"></span></a>
+                <div class="account-profile-picture account-big-profile-picture clear">
+                    <img width="150px" alt="Anne Hathaway picture" src="http://upload.wikimedia.org/wikipedia/commons/e/e1/Anne_Hathaway_Face.jpg" >
+                </div>
+                <h1 class="account-user_name">Math Zeda</h1>
+                <div class="account-profile-description">
+                    <p class="account-scnd-font-color">Marchande - Vendeuse vip</p>
+                </div>
+                <ul class="account-profile-options account-horizontal-list">
+                    <li><a class="account-user-comments" href="#40"><p><span class="icon fontawesome-comment-alt account-scnd-font-color"></span>23</li></p></a>
+                    <li><a class="account-user-views" href="#41"><p><span class="icon fontawesome-eye-open account-scnd-font-color"></span>841</li></p></a>
+                    <li><a class="account-user-likes" href="#42"><p><span class="icon fontawesome-heart-empty account-scnd-font-color"></span>49</li></p></a>
+                </ul>
+            </div>
+            <div class="account-join-newsletter account-block"> <!-- JOIN NEWSLETTER (RIGHT-CONTAINER) -->
+                <h2 class="account-titular">S'INCRIRE À LA NEWSLETTER</h2>
+                <div class="account-input-container">
+                    <input type="text" placeholder="john.deo@gmail.com" class="account-input email text-input">
+                    <div class="input-icon envelope-icon-newsletter"><span class="fontawesome-envelope account-scnd-font-color"></span></div>
+                </div>
+                <a class="account-subscribe button" href="#21">S'INSCRIRE</a>
+            </div>
+        </div>
+
+        <!-- RIGHT-CONTAINER -->
+        <div class="account-right-container account-container">
+            <div class="account-calendar-day account-block"> <!-- CALENDAR DAY (RIGHT-CONTAINER) -->
+                <div class="account-arrow-btn-container">
+                    <!-- <a class="account-arrow-btn left" href="#200"><span class="icon fontawesome-angle-left"></span></a> -->
+                    <h2 class="account-titular">WEDNESDAY</h2>
+                    <!-- <a class="account-arrow-btn right" href="#201"><span class="icon fontawesome-angle-right"></span></a> -->
+                </div>
+                <p class="account-the-day">26</p>
+                <!-- <a class="account-add-event button" href="#27">ADD EVENT</a> -->
+            </div>
+            <!-- <div class="account-join-newsletter account-block"> 
+                <h2 class="account-titular">S'INCRIRE À LA NEWSLETTER</h2>
+                <div class="input-container">
+                    <input type="text" placeholder="john.deo@gmail.com" class="email text-input">
+                    <div class="input-icon envelope-icon-newsletter"><span class="fontawesome-envelope account-scnd-font-color"></span></div>
+                </div>
+                <a class="subscribe button" href="#21">S'INSCRIRE</a>
+            </div> -->
+
+        </div> <!-- end right-container -->
+    </div>
+</div> <!-- end main-container -->
+
+
 {% endblock %}

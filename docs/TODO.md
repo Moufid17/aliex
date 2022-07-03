@@ -39,8 +39,8 @@
       ...
       }
       ```
-- [ ] Setup [Twig component](https://github.com/weaverryan/live-demo)
-- *[ ] Setup product [Vich_Uploader](https://symfony.com/bundles/EasyAdminBundle/2.x/integration/vichuploaderbundle.html#customizing-form-fields-for-image-and-file-uploading)
+- [x] Setup [Twig component](https://github.com/weaverryan/live-demo)
+- [x] Setup product [Vich_Uploader](https://symfony.com/bundles/EasyAdminBundle/2.x/integration/vichuploaderbundle.html#customizing-form-fields-for-image-and-file-uploading)
   - [github](https://github.com/dustin10/VichUploaderBundle/blob/master/docs/usage.md)
 
 
@@ -49,7 +49,7 @@
 - [x] Register
 - [x] Login/logout
 - [x] Reset Password
-- *2[ ] Notification/Email after Registering, reset password and more
+- *[ ] Notification/Email after Registering, reset password and more
   - [mailer](https://symfony.com/doc/current/mailer.html#installation)
   - [serialize](https://symfony.com/doc/current/components/mime.html)
 
@@ -65,6 +65,8 @@
 - Graph
 
 **SERVICES**
+  - PRODUITS:
+    - [ ] slug 
   - ANNONCES:
     - [ ] Deposer un annonce :
       - Vue Produit pour admin
@@ -83,10 +85,10 @@
   - FACTURE :
     - [ ] Création
     - [ ] Stockage
-  - TRANSPORT :
-    - [ ] Confirmation d'envoie et de réception de Produit
 
 
 ### RESSOURCES :
 
 - [Doctrine Extensions (Timestampable, Translatable, etc.)](https://symfony.com/doc/current/doctrine.html#doctrine-extensions-timestampable-translatable-etc)
+- [Email - Gmail](https://www.youtube.com/watch?v=HZ9YqilMQLE)
+- [Facture](https://www.youtube.com/watch?v=K19ki9ocjws)

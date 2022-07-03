@@ -106,15 +106,12 @@ docker-compose up -d
         - entity manager : `Doctrine\ORM\EntityManagerInterface`
         - object manager : `Doctrine\Persistence\ObjectManager`
     - **Flush** : update datas in database.
-us
-sudo service apache2 stop
-docker-compose up -d
-```
 4. Route naming :  `controller_method`
 5. `Utiliser un integer (id) dans la view` grâce à (`~`):
     ```
     <input type="hidden" name="token" value="{{ csrf_token('delete-item'~car.id) }}"/>
     ```
+6. 
 ### Sourcing :
 > https://github.com/AdrienMrn
 ### Getting Start :
@@ -208,10 +205,6 @@ docker-compose up -d
         - entity manager : `Doctrine\ORM\EntityManagerInterface`
         - object manager : `Doctrine\Persistence\ObjectManager`
     - **Flush** : update datas in database.
-us
-sudo service apache2 stop
-docker-compose up -d
-```
 4. Route naming :  `controller_method`
 5. `Utiliser un integer (id) dans la view` grâce à (`~`):
     ```
@@ -236,3 +229,5 @@ docker-compose up -d
     ```
 7. [DateType with widget](https://symfony.com/doc/current/reference/forms/types/date.html):
 8. Back to last migration : `doctrine:migrations:rollup`
+
+

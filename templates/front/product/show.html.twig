@@ -32,7 +32,7 @@
           <div class="mt-2 pr-3 product_content">
             <p class="fs-6 text-justify">{{ product.description }}</p>
           </div>
-          <h3>$430.99</h3>
+          <h3>{{(product.price/100)|format_currency('EUR')}}</h3>
           <div class="product_ratings d-flex flex-row align-items-center">
             <div class="d-flex flex-row">	
                 <i class='bi bi-star-fill' ></i>	
@@ -55,21 +55,14 @@
               </ul>
             </div>
           </div>
-          <div class="product_buttons d-flex flex-row mt-5 gap-3">	
+          <div class="d-flex flex-row mt-5 gap-3">	
             <button class="btn btn-outline-dark">Acheter maintenant</button>
             <button class="btn btn-dark">Ajouter au panier</button>	
             {% if product.owner == app.user %}
               <a href="{{ path('app_edit_product',{'id':product.id}) }}"><button class="btn btn-dark">Modifier</button></a>
             {% endif %}	
           </div>
-          {# <div class="product_search-option">
-            <i class='bi bi-search product_first-search'></i>	
-            <div class="inputs">	
-                <input type="text" name="">	
-            </div>
-            <i class='bi bi-share product_share'></i>	
-          </div> #}
-        </div>
+         </div>
       </div>
     </div>
   </div>

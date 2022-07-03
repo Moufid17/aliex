@@ -1,130 +1,477 @@
-/* GLOBAL */
-.text-justify {
-  text-align: justify;
-}
+/** Inspired by: http://graphicburger.com/flat-design-ui-components/ **/
+/** Line-chart and donut-chart made by @kseso https://codepen.io/Kseso/pen/phiyL **/
 
 
-/* GLOBAL FOOTER */
-.footer-custom{
-    text-align: center;
-    position: fixed !important;
-    bottom:0;
-    width: 100%;
-    background-color: rgb(56, 32, 70);
-    padding: 5px;
+/************************************ FONTS ************************************/
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
+@import url(https://weloveiconfonts.com/api/?family=entypo|fontawesome|zocial);
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+/* fontawesome */
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+/* social */
+[class*="zocial-"]:before {
+  font-family: 'zocial', sans-serif;
+}
+@font-face {
+	font-family: 'icomoon';
+	src:url('https://jlalovi-cv.herokuapp.com/font/icomoon.eot');
+	src:url('https://jlalovi-cv.herokuapp.com/font/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('https://jlalovi-cv.herokuapp.com/font/icomoon.ttf') format('truetype'),
+		url('https://jlalovi-cv.herokuapp.com/font/icomoon.woff') format('woff'),
+		url('https://jlalovi-cv.herokuapp.com/font/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
 
-/* PRODUCT PAGE */
-/* body{background-color: #ecedee} */
-.product_card{
-    border: none;
-    overflow: hidden
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
-.product_thumbnail_images ul{
-    list-style: none;justify-content: center;
-    display: flex;align-items: center;
-    margin-top:10px
+.icon-cloudy:before {
+	content: "\e60f";
 }
-.product_thumbnail_images ul li{
-    margin: 5px;padding: 10px;
-    border: 2px solid #eee;
-    cursor: pointer;transition: all 0.5s
+.icon-sun:before {
+	content: "\e610";
 }
-.product_thumbnail_images ul li:hover{
-    border: 2px solid #000
-}    
-.product_main_image{
-    display: flex;justify-content: center;
-    align-items: center;border-bottom: 1px solid #eee;
-    height: 400px;width: 100%;overflow: hidden
+.icon-cloudy2:before {
+	content: "\e611";
 }
-.product_heart{
-    height: 29px;width: 29px;
-    background-color: #eaeaea;border-radius: 50%;
-    display: flex;justify-content: center;align-items: center
+/************************************* END FONTS *************************************/
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;  
 }
-.product_content p{
-    font-size: 12px
+
+/* body {
+	background: rgba(230, 218, 218, 0.667);
+} */
+.account-main-container ul {
+	list-style-type: none;
+	margin: 0;
+	padding-left: 0;
 }
-.product_ratings span{
-    font-size: 14px;margin-left: 12px
+
+.account-main-container h1 {
+	font-size: 23px;
 }
-.product_colors{
-    margin-top: 5px
+
+.account-main-container h2 {
+	font-size: 17px;
 }
-.product_colors ul{
-    list-style: none;display: flex;
-    padding-left: 0px
+
+.account-main-container p {
+	font-size: 15px;
 }
-.product_colors ul li{
-    height: 20px;width: 20px;
-    display: flex;border-radius: 50%;
-    margin-right: 10px;cursor: pointer
+
+.account-main-container a {
+	text-decoration: none;
+	font-size: 15px;
 }
-.product_colors ul li:nth-child(1){
-    background-color: #6c704d
+.account-main-container a:hover {
+	text-decoration: underline;
 }
-.product_colors ul li:nth-child(2){
-    background-color: #96918b
+
+.account-main-container h1,.account-main-container h2,.account-main-container p,.account-main-container a,.account-main-container span{
+	color: #fff;
 }
-.product_colors ul li:nth-child(3){
-    background-color: #68778e
+.account-scnd-font-color {
+	color: #9099b7;
 }
-.product_colors ul li:nth-child(4){
-    background-color: #263f55
+
+.account-input-container {
+	position: relative;
 }
-.product_colors ul li:nth-child(5){
-    background-color: black
+input[type=text].account-input{
+	width: 260px;
+	height: 50px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	padding-left: 45px;
+	background: #50597b;
+	color: #fff;
+	border: solid 1px #1f253d;
+	border-radius: 5px;		
 }
-.product_right-side{
-    position: relative
+ /* WebKit browsers */
+input[type=text].account-input::-webkit-input-placeholder {
+	color: #fff;	   		
 }
-.product_search-option{
-    position: absolute;background-color: #000;
-    overflow: hidden;align-items: center;
-    color: #fff;width: 200px;
-    height: 240px;
-    border-radius: 49% 51% 50% 50% / 68% 69% 31% 32%;
-    left: 30%;bottom: -250px;transition: all 0.5s;cursor: pointer
+/* Mozilla Firefox 4 to 18 */
+input[type=text].account-input:-moz-input-placeholder { 
+	color: #fff;	   
 }
-.product_search-option .product_first-search{
-    position: absolute;top: 20px;left: 90px;
-    font-size: 20px;opacity: 1000
+/* Mozilla Firefox 19+ */
+input[type=text].account-input[type=text]::-moz-input-placeholder { 
+	color: #fff;
 }
-.product_search-option .inputs{
-    opacity: 0;transition: all 0.5s ease;
-    transition-delay: 0.5s;position: relative
+/* Internet Explorer 10+ */
+input.account-input[type=text]:-ms-input-placeholder { 
+	color: #fff;	   	
 }
-.product_search-option .inputs input{
-    position: absolute;top: 200px;
-    left: 30px;padding-left: 20px;
-    background-color: transparent;width: 300px;
-    border: none;color: #fff;
-    border-bottom: 1px solid #eee;
-    transition: all 0.5s;z-index: 10
+/* removes the default orange border when focus */
+input.account-input[type=text]:focus {
+	outline: none; 
+	border: 1px solid #11a8ab;
 }
-.product_search-option .inputs input:focus{
-    box-shadow: none;outline: none;z-index: 10
+.account-main-container .input-icon {
+	font-size: 22px;
+	position: absolute;
+	left: 31px;
+	top: 10px;
 }
-.product_search-option:hover{
-    border-radius: 0px;width: 100%;left: 0px
+.input-icon.password-icon {
+	left: 35px;
 }
-.product_search-option:hover .inputs{
-    opacity: 1
+
+.account-horizontal-list {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
 }
-.product_search-option:hover .product_first-search{
-    left: 27px;top: 25px;font-size: 15px
+.account-horizontal-list li {
+	float: left;
 }
-.product_search-option:hover .inputs input{
-    top: 20px
+
+.account-main-container .clear {
+	clear: both;
 }
-.product_search-option .product_share{
-    position: absolute;right: 20px;
-    top: 22px
+
+.account-main-container .icon {
+	font-size: 25px;
 }
-    
-.product_buttons .btn, .btn{
-    height: 50px;width: 200px;
-    border-radius: 0px !important
+
+.account-titular {
+	display: block;
+	line-height: 60px;
+	margin: 0;
+	text-align: center;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
+
+.account-main-container .button {
+	display: block;
+	width: 175px;
+	line-height: 50px;
+	font-size: 16px;
+	font-weight: 700;
+	text-align: center;
+	margin: 0 auto;
+	border-radius: 5px;
+	-webkit-transition: background .3s;
+	transition: background .3s;
+}
+.account-main-container .button:hover {
+	text-decoration: none;
+}
+
+.account-arrow-btn-container {
+	position: relative;
+}
+	.account-arrow-btn {
+		position: absolute;
+		display: block;
+		width: 60px;
+		height: 60px;
+		-webkit-transition: background .3s;
+		transition: background .3s;
+	}
+		.account-arrow-btn:hover {
+			text-decoration: none;
+		}
+		.account-arrow-btn.left {
+			border-top-left-radius: 5px;
+		}
+		.account-arrow-btn.right {
+			border-top-right-radius: 5px;
+			right: 0;
+			top: 0;
+		}
+		.account-arrow-btn .icon {
+			display: block;
+			font-size: 18px;
+			border: 2px solid #fff;
+			border-radius: 100%;
+			line-height: 17px;
+			width: 21px;
+			margin: 20px auto;
+			text-align: center;
+		}
+			.account-arrow-btn.left .icon {
+				padding-right: 2px;
+			}
+
+.account-profile-picture {
+	border-radius: 100%;
+	overflow: hidden;
+	-webkit-box-sizing: content-box;
+  	-moz-box-sizing: content-box;
+  	box-sizing: content-box;	
+}
+.account-big-profile-picture {
+	margin: 0 auto;		
+	border: 5px solid #50597b;
+	width: 150px;
+	height: 150px;
+}
+.account-small-profile-picture {
+	border: 2px solid #50597b;
+	width: 40px;
+	height: 40px;
+}
+
+.account-profile-menu {
+	float: right;
+	height: 50px;
+	padding-right: 20px;
+}
+.account-profile-menu p {
+	/* font-size: 17px; */
+	display: inline-block;
+	/* line-height: 76px; */
+	margin: 0;
+	padding-right: 10px;
+}
+/** MAIN CONTAINER **/
+
+.account-main-container {
+	font-family: 'Ubuntu', sans-serif;
+	width: 950px;
+	height: 1725px;
+	margin: 6em auto;
+}	
+	/*********************************************** HEADER ***********************************************/
+	.account-header {
+		height: 80px;
+	}
+		.account-header-menu {
+			font-size: 17px;
+			line-height: 80px;
+		}
+			.account-header-menu li {
+				position: relative;
+        		-webkit-transform: translateZ(0); /** To avoid a flash when hover messages **/
+			}
+				.account-header-menu-tab {
+					padding: 0 27px;
+					display: block;
+					line-height: 74px;
+					font-size: 17px;
+					-webkit-transition: background .3s;
+					transition: background .3s;
+				}
+					.account-header-menu-tab:hover {
+						background: #50597b;
+						border-bottom: 4px solid #11a8ab;
+						text-decoration: none;
+					}
+					.account-header-menu-tab .icon {
+						padding-right: 15px;
+					}
+				.account-header-menu-number {
+					position: absolute;
+					line-height: 22px;
+					padding: 0 6px;
+					font-weight: 700;
+					background: #e64c65;
+					border-radius: 100%;
+					top: 15px;
+					right: 2px;
+					-webkit-transition: all .3s linear;
+					transition: all .3s linear;
+				}
+					.account-header-menu li:hover .account-header-menu-number {
+						text-decoration: none;
+						-webkit-transform: rotate(360deg);
+						transform: rotate(360deg);
+
+					}
+
+			.account-small-profile-picture {
+				display: inline-block;
+				vertical-align: middle;				
+			}
+	/** CONTAINERS **/
+	.account-container {
+		float: left;
+		width: 300px;
+	}
+		.account-block {
+			margin-bottom: 25px;
+			background: #394264;
+			border-radius: 5px;
+		}
+		/******************************************** LEFT CONTAINER *****************************************/
+		.account-left-container {}
+			.account-menu-box {
+				/* height: 360px; */
+			}
+				.account-menu-box .account-titular {
+					background: #11a8ab;
+				}
+				.account-menu-box-menu .icon {
+					display: inline-block;
+					vertical-align: top;
+					width: 28px;
+					margin-left: 20px;
+					margin-right: 15px;
+				}
+				.account-menu-box-number {
+					width: 36px;
+					line-height: 22px;
+					background: #50597b;
+					text-align: center;
+					border-radius: 15px;
+					position: absolute;
+					top: 15px;
+					right: 15px;
+					-webkit-transition: all .3s;
+					transition: all .3s;
+				}
+				.account-menu-box-menu li{
+					height: 60px;
+					position: relative;										
+				}
+				.account-menu-box-tab {
+					line-height: 60px;
+					display: block;
+					border-bottom: 1px solid #1f253d;
+					-webkit-transition: background .2s;
+					transition: background .2s;
+				}
+					.account-menu-box-tab:hover {
+						background: #50597b;
+						border-top: 1px solid #1f253d;
+						text-decoration: none;
+					}
+					.account-menu-box-tab:hover .icon {
+						color: #fff;
+					}
+					.account-menu-box-tab:hover .account-menu-box-number {
+						background: #e64c65;
+					}
+		/************************************************** MIDDLE CONTAINER **********************************/
+		.account-middle-container {
+			margin: 0 25px;			
+		}
+			.account-profile {
+				height: 410px;
+			}
+				.add-button .icon {
+					float: right;
+					line-height: 18px;
+					width: 23px;					
+					border: 2px solid;
+					border-radius: 100%;
+					font-size: 18px;
+					text-align: center;
+					margin: 10px;					
+				}
+					.add-button .icon:hover {
+						color: #e64c65;
+						border-color: #e64c65;
+					}
+				.account-user_name {
+					margin: 25px 0 16px;
+					text-align: center;
+				}
+				.account-profile-description {
+					width: 210px;
+					margin: 0 auto;
+					text-align: center;
+				}
+				.account-profile-options {
+					padding-top: 23px;
+				}
+					.account-profile-options li {
+						border-left: 1px solid #1f253d;
+					}
+						.account-profile-options p {
+							margin: 0;
+						}
+						.account-profile-options a {
+							display: block;					
+							width: 99px;
+							line-height: 60px;
+							text-align: center;
+							-webkit-transition: background .3s;
+							transition: background .3s;				
+						}
+							.account-profile-options a:hover {
+								text-decoration: none;
+								background: #50597b;
+							}
+							.account-profile-options a:hover.account-user-comments .icon {
+								color: #fcb150;
+							}
+							.account-profile-options a:hover.account-user-views .icon {
+								color: #11a8ab;
+							}
+							.account-profile-options a:hover.account-user-likes .icon {
+								color: #e64c65;
+							}
+							.account-profile-options .icon {
+								padding-right: 10px;
+							}
+							.account-profile-options .account-user-comments {
+								border-top: 4px solid #fcb150;
+							}
+							.account-profile-options .account-user-views {
+								border-top: 4px solid #11a8ab;
+							}
+							.account-profile-options .account-user-likes {
+								border-top: 4px solid #e64c65;
+							}
+		/********************************************* RIGHT CONTAINER ****************************************/
+		.account-right-container {}
+			.account-join-newsletter {
+				height: 230px;
+			}
+				.account-join-newsletter .account-titular {
+					padding-top: 10px;
+				}
+				.account-subscribe.button {
+					background: #11a8ab;
+					margin-top: 10px;
+				}
+					.account-subscribe.button:hover {
+						background: #0F9295;
+					}
+
+			.account-calendar-day {
+				height: 320px;
+				background: #3468af;
+			}
+				.account-calendar-day .account-titular {
+					background: #1a4e95;
+				}
+					.account-calendar-day .account-arrow-btn:hover {
+						background: #16417E;
+					}
+				.account-calendar-day .account-the-day {
+					margin: 0;
+					text-align: center;
+					font-size: 146px;
+				}
+				.add-event.button {
+					background: #4fc4f6;
+				}
+					.add-event.button:hover {
+						background: #35aadc;
+					}

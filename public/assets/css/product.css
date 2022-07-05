@@ -64,6 +64,12 @@
 .product_right-side{
     position: relative
 }
+.product_button button a{
+    color : white; text-decoration: none;
+}
+.product_button button a:hover{
+    color : white; text-decoration: none;
+}
 /* .product_search-option{
     position: absolute;background-color: #000;
     overflow: hidden;align-items: center;

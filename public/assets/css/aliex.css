@@ -83,9 +83,9 @@
 	text-decoration: none;
 	font-size: 15px;
 }
-.account-main-container a:hover {
+/* .account-main-container a:hover {
 	text-decoration: underline;
-}
+} */
 
 .account-main-container h1,.account-main-container h2,.account-main-container p,.account-main-container a,.account-main-container span{
 	color: #fff;
@@ -100,6 +100,7 @@
 input[type=text].account-input{
 	width: 260px;
 	height: 50px;
+	/* margin: auto; */
 	margin-left: 20px;
 	margin-bottom: 20px;
 	padding-left: 45px;
@@ -252,8 +253,8 @@ input.account-input[type=text]:focus {
 
 .account-main-container {
 	font-family: 'Ubuntu', sans-serif;
-	width: 950px;
-	height: 1725px;
+	/* width: 950px; */
+	height: 1200px;
 	margin: 6em auto;
 }	
 	/*********************************************** HEADER ***********************************************/
@@ -309,8 +310,9 @@ input.account-input[type=text]:focus {
 			}
 	/** CONTAINERS **/
 	.account-container {
-		float: left;
-		width: 300px;
+		/* float: left; */
+		/* width: 300px; */
+		
 	}
 		.account-block {
 			margin-bottom: 25px;
@@ -318,7 +320,9 @@ input.account-input[type=text]:focus {
 			border-radius: 5px;
 		}
 		/******************************************** LEFT CONTAINER *****************************************/
-		.account-left-container {}
+		.account-left-container {
+			/* margin: 0 10px; */
+		}
 			.account-menu-box {
 				/* height: 360px; */
 			}
@@ -368,7 +372,7 @@ input.account-input[type=text]:focus {
 					}
 		/************************************************** MIDDLE CONTAINER **********************************/
 		.account-middle-container {
-			margin: 0 25px;			
+			/* margin: 0 10px;			 */
 		}
 			.account-profile {
 				height: 410px;
@@ -439,7 +443,9 @@ input.account-input[type=text]:focus {
 								border-top: 4px solid #e64c65;
 							}
 		/********************************************* RIGHT CONTAINER ****************************************/
-		.account-right-container {}
+		.account-right-container {
+			/* margin: 0 10px; */
+		}
 			.account-join-newsletter {
 				height: 230px;
 			}

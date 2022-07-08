@@ -39,9 +39,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Product::class)]
     private $products;
 
+    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Address::class)]
+    private $addresses;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->addresses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -199,5 +203,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->email,
             $this->password,
         );        
+    }
+
+    /**
+     * @return Collection<int, Address>
+     */
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+
+    public function addAddress(Address $address): self
+    {
+        if (!$this->addresses->contains($address)) {
+            $this->addresses[] = $address;
+            $address->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAddress(Address $address): self
+    {
+        if ($this->addresses->removeElement($address)) {
+            // set the owning side to null (unless already changed)
+            if ($address->getOwner() === $this) {
+                $address->setOwner(null);
+            }
+        }
+
+        return $this;
     }
 }

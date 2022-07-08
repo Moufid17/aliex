@@ -54,6 +54,11 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mb-2 mb-md-0">
+                      <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ path('app_product')}}">Nos produits</a>
+                      </li>
+                    </ul>
                     <div class="d-flex justify-content-between me-auto mx-auto my-2">
                         <ul class="navbar-nav mb-2 mb-md-0">
                             <li class="nav-item mx-md-2">
@@ -64,7 +69,7 @@
                                        # -    {offer page | Form} : {ENTITY: Product + User}
                                        # - Else: path('login') then {OK} process.
                                       #}
-                                      <a class="nav-link active py-0" href="#">Deposer une annonce</a>
+                                      <a class="nav-link active py-0" href="#">Déposer une annonce</a>
                                   </button>
                                 </form>
                             </li>

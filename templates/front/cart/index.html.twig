@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier - Aliex{% endblock %}
+
+{% block content %}
+    <div class="container mt-10">
+        <h3>Mon Panier</h3>
+        <hr>
+        {% if datas|length > 0 %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">Produit</th>
+                <th scope="col"></th>
+                <th scope="col">Qté</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Total</th>
+                <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% set total = null %}
+            {% for product in datas %}
+                <tr>
+                    <th scope="row">
+                        <img class="" src="{{ vich_uploader_asset(product.product, 'imageFile')}}" alt="{{ product.product.name }}" height="50px" width="50px">
+                    </th>
+                    <td>
+                        <strong>{{ product.product.name }}</strong><br>
+                        <small>{{ product.product.category.name }}</small>
+                    </td>
+                    <td>
+                        <a href="{{ path('app_user_cart_decrease', {'id': product.product.id }) }}">
+                            <span class="icon fontawesome-minus account-scnd-font-color" style="font-size:15px"></span>
+                        </a>
+                        {{ product.qte }}
+                        <a href="{{ path('app_user_cart_add', {'id': product.product.id }) }}">
+                            <span class="icon fontawesome-plus account-scnd-font-color" style="font-size:15px"></span>
+                        </a>
+                    </td>
+                    <td>{{(product.product.price/100)|format_currency('EUR')}}</td>
+                    <td>{{ ((product.product.price/100)*(product.qte))|format_currency('EUR') }}</td>
+                    <td>
+                        <a href="{{ path('app_user_cart_delete', {'id': product.product.id }) }}">
+                            <span class="icon fontawesome-trash account-scnd-font-color" style="font-size:22px"></span>
+                        </a>
+                    </td>
+                </tr>
+                {% set total = total + (product.product.price * product.qte) %}
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="mb-5">
+            <div class="float-right">
+                <p><b>Nombre de produit: </b>{{ datas|length }}<br></p>
+                <p><b>Total de mon panier : </b>{{ (total/100)|format_currency('EUR') }}<br></p>
+                <a href="#" class="btn btn-dark btn-block mt-2 mx-auto">Valider mon panier</a>
+            </div>
+        </div>
+        {% else %}
+            <p>Votre panier est vide.</p>
+        {% endif %}
+    </div>
+{% endblock %}

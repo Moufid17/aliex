@@ -55,7 +55,7 @@ class AccountController extends AbstractController
         );
     }
 
-    #[Route('/mon-compte/offres', name: 'app_account_offers', methods:['GET', 'POST'])]
+    #[Route('/mon-compte/mes-offres', name: 'app_account_offers', methods:['GET'])]
     public function offers(ProductRepository $productRepository):Response 
     {
         $products = $productRepository->findByOwner($this->getUser());

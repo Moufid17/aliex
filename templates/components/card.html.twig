@@ -5,7 +5,7 @@
         <h5 class="card-title">{{ this.card.name }}</h5>
         <h5 class="card-title ">{{(this.card.price/100)|format_currency('EUR')}}</h5>
         {% if this.card.owner != app.user %}
-            <a href="#" class=""><button class="btn btn-dark">Ajouter au panier</button></a>
+            <a href="{{ path('app_user_cart_add', {'id': this.card.id}) }}" class=""><button class="btn btn-dark">Ajouter au panier</button></a>
         {% else %}
             <a href="{{ path('app_edit_product',{'id':this.card.id}) }}" class=""><button class="btn btn-dark">Modifier</button></a>
             <a href="#" class=""><button class="btn btn-dark">supprimer</button></a>

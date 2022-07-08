@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ app.user.username }} - Aliex{% endblock %}
+{% block title %}{{ app.user.username }} - Dashboard | Aliex{% endblock %}
 
 {% block content %}
-<div class="container account-main-container">
+<div class="container-fluid account-main-container">
     <!-- HEADER -->
     <header class="row account-header account-block">
         <ul class="account-header-menu account-horizontal-list d-flex justify-content-between">
@@ -32,7 +32,10 @@
                         <a class="account-menu-box-tab" href="{{ path('app_account_offers') }}"><span class="icon fontawesome-list account-scnd-font-color"></span>Mes offres<div class="account-menu-box-number">{{app.user.products|length}}</div></a>                            
                     </li>
                     <li>
-                        <a class="account-menu-box-tab" href="#"><span class="icon fontawesome-shopping-cart account-scnd-font-color"></span>Mes Commandes<div class="account-menu-box-number">1</div></a>                            
+                        <a class="account-menu-box-tab" href="{{ path('app_user_cart_index')}}"><span class="icon fontawesome-shopping-cart account-scnd-font-color"></span>Mon panier<div class="account-menu-box-number">{{ (app.session) ? app.session.get('cart', []) |length : 0}}</div></a>                            
+                    </li>
+                    <li>
+                        <a class="account-menu-box-tab" href="{{ path('app_user_cart_index')}}"><span class="icon fontawesome-shopping-cart account-scnd-font-color"></span>Mes Commandes<div class="account-menu-box-number">1</div></a>                            
                     </li>
                     <li>
                         <a class="account-menu-box-tab" href="{{ path('app_account_cpwd') }}"><span class="icon entypo-eye account-scnd-font-color"></span>Modifier Mot de passe</a>                            
@@ -41,14 +44,11 @@
                         <a class="account-menu-box-tab" href="#10"><span class="icon entypo-location account-scnd-font-color"></span>Modifier Adresse</a>                            
                     </li>
                     <li>
-                        <a class="account-menu-box-tab" href="#12"><span class="icon entypo-cog account-scnd-font-color"></span>Account Settings</a>
+                        <a class="account-menu-box-tab" href="#13"><span class="icon entypo-chart-line account-scnd-font-color"></span>Mes satistiques</a>
                     </li>
                     <li>
-                        <a class="account-menu-box-tab" href="#13"><span class="icon entypo-chart-line account-scnd-font-color"></span>Statistics</a>
-                    </li>      
-                    <li>
-                        <a class="account-menu-box-tab" href="#13"><span class="icon entypo-chart-line account-scnd-font-color"></span>Statistic</a>
-                    </li>                     
+                        <a class="account-menu-box-tab" href="#12"><span class="icon entypo-cog account-scnd-font-color"></span>Paramètres</a>
+                    </li>                          
                 </ul>
             </div>
         </div>

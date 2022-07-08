@@ -42,26 +42,29 @@
 - [x] Setup [Twig component](https://github.com/weaverryan/live-demo)
 - [x] Setup product [Vich_Uploader](https://symfony.com/bundles/EasyAdminBundle/2.x/integration/vichuploaderbundle.html#customizing-form-fields-for-image-and-file-uploading)
   - [github](https://github.com/dustin10/VichUploaderBundle/blob/master/docs/usage.md)
-
+- [ ]Fixed <base.html.twig> footer with admin template footer.
 
 **LOGIN SYSTEM**
 - [x] User entity AND Login and Register Form.
 - [x] Register
 - [x] Login/logout
 - [x] Reset Password
-- *[ ] Notification/Email after Registering, reset password and more
-  - [mailer](https://symfony.com/doc/current/mailer.html#installation)
-  - [serialize](https://symfony.com/doc/current/components/mime.html)
+- [ ] Notification/Email after Registering, reset password and more
+  - [x] [serialize](https://symfony.com/doc/current/components/mime.html)
+  - *[ ] [mailer](https://symfony.com/doc/current/mailer.html#installation) | SONNY
 
 **USER**
-- [ ] Dashboard Template
-- [ ] Mes offres
-- [ ] Mon panier
+- [x] Dashboard Template
+- [x] Mes offres
+- *[ ] Mon panier | MOUFID
 - [ ] Mes Adresses de livraison
+- [ ] Mot de passe oublié. (Utiliser le système de mail pour ça.)
+  - [ ] TEMPLATE
+  - [ ] Script
 
 
 **ADMIN**
-- *1[ ] Definir ADMIN template
+- *1[ ] Definir ADMIN template | MOUFID
 - Graph
 
 **SERVICES**

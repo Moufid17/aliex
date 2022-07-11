@@ -5,8 +5,10 @@ namespace App\Controller\Front;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Form\SearchType;
 use App\Security\ProductVoter;
 use App\Repository\ProductRepository;
+use App\Services\Search;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -18,12 +20,22 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    #[Route('/produits', name: 'app_product', methods: 'GET')]
-    public function index(ProductRepository $productRepository): Response
+    #[Route('/produits', name: 'app_product', methods: ['GET', 'POST'])]
+    public function index(Request $request,EntityManagerInterface $entityManager): Response
     {
+        $search = new Search();
+        $form = $this->createForm(SearchType::class, $search);
+        $form->handleRequest($request);
+
+        $product = $entityManager->getRepository(Product::class)->findAll();
+
+        if($form->isSubmitted() && $form->isValid()){
+            $product = $entityManager->getRepository(Product::class)->findBySearch($search);
+        }
+
         return $this->render('front/product/index.html.twig', [
-            // 'products' => $productRepository->findBy([],['name' => 'ASC']),
-            'products' => $productRepository->findAll(),
+            'products' => $product,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -62,7 +74,7 @@ class ProductController extends AbstractController
         );
     }
 
-    #[Route("/produits/{id}/edit", name: 'app_edit_product', methods: ['GET','PUT'])]
+    #[Route("/produits/{id}/edit", name: 'app_edit_product', methods: ['GET','POST'])]
     #[IsGranted(ProductVoter::EDIT, 'product',"Vous n'êtes pas autoriser à modifier ce produit.")]
     public function edit(Product $product, ProductRepository $productRepository, Request $request, EntityManagerInterface $em): Response
     {  
@@ -84,7 +96,7 @@ class ProductController extends AbstractController
         );
     }
 
-    #[Route('/produits/{id}', name: 'app_show_product', methods: ['GET'])]
+    #[Route('/produits/{id}', name: 'app_show_product', methods: ['GET','POST'])]
     public function show(Product $product): Response
     {
         return $this->render('front/product/show.html.twig',

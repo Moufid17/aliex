@@ -40,11 +40,11 @@ class Product
     #[ORM\Column(type: 'float')]
     private $price;
 
-
-    #[Vich\UploadableField(mapping: 'product_image', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Vich\UploadableField(mapping: "product_image", fileNameProperty: "imageName", size: "imageSize")]
     /**
      * @Assert\Image(
-     *      mimeTypes=("image/png", "image/jpeg", "image/png"),
+     *      mimeTypes={"image/png", "image/jpeg", "image/png"},
+     *      mimeTypesMessage = " Le format de l'image n'est pas autoriser.",
      * )
      */
     private ?File $imageFile = null;

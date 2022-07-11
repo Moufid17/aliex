@@ -27,7 +27,7 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/produits/creer', name: 'app_new_product', methods: ['GET', 'POST'])]
+    #[Route('/produits/creer', name: 'app_new_product', methods: ['POST'])]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
         if (!$this->getUser()) {
@@ -62,7 +62,7 @@ class ProductController extends AbstractController
         );
     }
 
-    #[Route('/produits/{id}/edit', name: 'app_edit_product', methods: ['GET', 'POST'])]
+    #[Route("/produits/{id}/edit", name: 'app_edit_product', methods: ['PUT'])]
     #[IsGranted(ProductVoter::EDIT, 'product',"Vous n'êtes pas autoriser à modifier ce produit.")]
     public function edit(Product $product, ProductRepository $productRepository, Request $request, EntityManagerInterface $em): Response
     {  

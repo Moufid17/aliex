@@ -20,20 +20,21 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    #[Route('/produits', name: 'app_product', methods: 'GET')]
-    public function index(Request $request,EntityManagerInterface $entityManager,ProductRepository $productRepository): Response
+    #[Route('/produits', name: 'app_product', methods: ['GET', 'POST'])]
+    public function index(Request $request,EntityManagerInterface $entityManager): Response
     {
         $search = new Search();
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
 
+        $product = $entityManager->getRepository(Product::class)->findAll();
+
         if($form->isSubmitted() && $form->isValid()){
-            dd($search);
             $product = $entityManager->getRepository(Product::class)->findBySearch($search);
         }
 
         return $this->render('front/product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+            'products' => $product,
             'form' => $form->createView(),
         ]);
     }

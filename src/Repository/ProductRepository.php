@@ -58,14 +58,15 @@ class ProductRepository extends ServiceEntityRepository
             ->join('p.category', 'c');
 
         if(!empty($search->name)){
+            $lower_str = strtolower($search->name);
             $query = $query
-                ->andWhere('p.name=:name')
-                ->setParameter('name', $search->name);
+                ->andWhere('LOWER(p.name) LIKE :name')
+                ->setParameter('name', "%{$lower_str}%");
         }
 
         if(!empty($search->category)){
             $query = $query
-                ->andWhere('p.category=:cat')
+                ->andWhere('p.category IN (:cat)')
                 ->setParameter('cat', $search->category);
         }
 

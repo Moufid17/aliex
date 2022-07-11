@@ -5,8 +5,10 @@ namespace App\Controller\Front;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Form\SearchType;
 use App\Security\ProductVoter;
 use App\Repository\ProductRepository;
+use App\Services\Search;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -19,11 +21,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('/produits', name: 'app_product', methods: 'GET')]
-    public function index(ProductRepository $productRepository): Response
+    public function index(Request $request,EntityManagerInterface $entityManager,ProductRepository $productRepository): Response
     {
+        $search = new Search();
+        $form = $this->createForm(SearchType::class, $search);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            dd($search);
+            $product = $entityManager->getRepository(Product::class)->findBySearch($search);
+        }
+
         return $this->render('front/product/index.html.twig', [
-            // 'products' => $productRepository->findBy([],['name' => 'ASC']),
             'products' => $productRepository->findAll(),
+            'form' => $form->createView(),
         ]);
     }
 

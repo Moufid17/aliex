@@ -24,6 +24,7 @@ aliex_db_con_1.session.sql
 ###> folders ###
 /.vscode/
 /public/images/
+/migrations_cp/
 ###< folders ###
 
 ### IDEA ###

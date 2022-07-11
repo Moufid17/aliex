@@ -26,3 +26,6 @@ aliex_db_con_1.session.sql
 /public/images/
 ###< folders ###
 
+### IDEA ###
+.idea
+

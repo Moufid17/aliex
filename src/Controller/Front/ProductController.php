@@ -74,7 +74,7 @@ class ProductController extends AbstractController
         );
     }
 
-    #[Route("/produits/{id}/edit", name: 'app_edit_product', methods: ['GET','PUT'])]
+    #[Route("/produits/{id}/edit", name: 'app_edit_product', methods: ['GET','POST'])]
     #[IsGranted(ProductVoter::EDIT, 'product',"Vous n'êtes pas autoriser à modifier ce produit.")]
     public function edit(Product $product, ProductRepository $productRepository, Request $request, EntityManagerInterface $em): Response
     {  
@@ -96,7 +96,7 @@ class ProductController extends AbstractController
         );
     }
 
-    #[Route('/produits/{id}', name: 'app_show_product', methods: ['GET'])]
+    #[Route('/produits/{id}', name: 'app_show_product', methods: ['GET','POST'])]
     public function show(Product $product): Response
     {
         return $this->render('front/product/show.html.twig',

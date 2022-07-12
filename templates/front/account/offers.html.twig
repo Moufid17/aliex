@@ -3,20 +3,9 @@
 {% block title %}Mes offres - Aliex{% endblock %}
 
 {% block content %}
-    {# <h1>PRODUITS</h1>
-    <div class="row">
-    {% for product in products %}
-        <div class="col-md-4 card">
-            <a href="{{ path('app_show_product',{'id': product.id}) }}" id="product_main_product_image"><img class="card-img-top" src="{{ '.jpg' in product.imageFilename ? asset('images/'~ product.imageFilename ):asset('images/default-product_main_image.jpg') }}" alt="Card image cap"></a>
-            <div class="card-body text-center">
-                <h5 class="card-title">{{ product.name }}</h5>
-                <h5 class="card-title ">26€</h5>
-                <a href="#" class=""><button class="btn btn-dark">Ajouter au panier</button></a>
-            </div>
-        </div>
-    {% endfor %} 
-    </div>#}
-    <h1>Mes Offres</h1>
+    <h1 class="d-inline-block">Mes Offres</h1>
+    <a class="btn btn-block btn-dark w-25 d-inline-block" style="float:right;" href="{{ path('app_new_product') }}">Ajouter</a>
+    <hr>
     <div class="row">
     {% for product in products %}
         {{ component('card', {'id' : product.id}) }}

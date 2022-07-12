@@ -1,0 +1,65 @@
+{% extends 'back_base.html.twig' %}
+
+{% block title %}Adresses | ADMIN - Aliex{% endblock %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Adresses</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">Adresses</li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-body">
+                    INFORMATIONS
+                    <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
+                    .
+                </div>
+            </div>
+            <!-- TABLES -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    ADRESSES
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>Nom & Prénom(s)</th>
+                                <th>Date de création</th>
+                                <th>Status</th>
+                                <th>Nombre d'offre(s)</th>
+                                <th>Montant de ventes</th>
+                                <th>Dépences</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Nom & Prénom(s)</th>
+                                <th>Date de création</th>
+                                <th>Status</th>
+                                <th>Nombre d'offre(s)</th>
+                                <th>Montant de ventes</th>
+                                <th>Dépences</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>                                    
+                            <tr>
+                                <td>Rhona Davidson</td>
+                                <td>Integration Specialist</td>
+                                <td>Tokyo</td>
+                                <td>55</td>
+                                <td>2010/10/14</td>
+                                <td>$327,900</td>
+                            </tr>
+                        </tbody>                                    
+                    </table>
+                </div>
+            </div>
+            <!-- TABLES -->
+        </div>
+    </main>
+{% endblock %}

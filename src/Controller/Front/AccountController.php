@@ -30,22 +30,21 @@ class AccountController extends AbstractController
         $form = $this->createForm(ChangePasswordType::class, $this->getUser());
         // Handle form
         $form->handleRequest($request);
-        // $form->getData() : return all information about the current user. Nothing about form.
         
         if($form->isSubmitted() && $form->isValid()){
             $pwd = $form->get('old_password')->getData();
-            // $hash = $passwordHasher->hashPassword($curUser,$pwd);
-            // Compare with current password
+            // Compare with the new password given.
             if ($passwordHasher->isPasswordValid($this->getUser(),$pwd)){
                 $newPwd = $form->get('newpassword')->getData();
                 $pwd_hash = $passwordHasher->hashPassword($this->getUser(),$newPwd);
                 $this->getUser()->setPassword($pwd_hash);
                 $em->flush();
                 return $this->redirectToRoute("app_account");
-            }else{
-                dd([$this->getUser()->getPassword(), $passwordHasher->hashPassword($this->getUser(),$pwd)]);
-                die("erreur");
             }
+            // Send flash error message.
+            // else{
+            //     die("erreur");
+            // }
         }
         
         return $this->render('front/account/changepwd.html.twig',

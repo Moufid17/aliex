@@ -1,14 +1,16 @@
-<div class="card col-md-3 m-2">
-    <a href="{{ path('app_show_product',{'id': this.card.id}) }}" id="product_main_product_image"><img class="card-img-top" src="{{ vich_uploader_asset(this.card, 'imageFile') ? vich_uploader_asset(this.card, 'imageFile'):asset('images/products/default-product_main_image.jpg') }}" alt="Card image cap"></a>
-    
-    <div class="card-body text-center">
-        <h5 class="card-title">{{ this.card.name }}</h5>
-        <h5 class="card-title ">{{(this.card.price/100)|format_currency('EUR')}}</h5>
-        {% if this.card.owner != app.user %}
-            <a href="{{ path('app_user_cart_add', {'id': this.card.id}) }}" class=""><button class="btn btn-dark">Ajouter au panier</button></a>
-        {% else %}
-            <a href="{{ path('app_edit_product',{'id':this.card.id}) }}" class=""><button class="btn btn-dark">Modifier</button></a>
-            <a href="#" class=""><button class="btn btn-dark">supprimer</button></a>
-        {% endif %}
-    </div>
+<div class="card col-md-3 m-1 px-0">
+    {# <div class=" w-100">  #}
+        <a href="{{ path('app_show_product',{'id': this.card.id}) }}" id="product_main_product_image"><img class="card-img-top w-100" src="{{ vich_uploader_asset(this.card, 'imageFile') ? vich_uploader_asset(this.card, 'imageFile'):asset('images/products/default-product_main_image.jpg') }}" alt="Card image cap"></a>
+        
+        <div class="card-body text-center d-block">
+            <h5 class="card-title">{{ this.card.name }}</h5>
+            <h5 class="card-title ">{{(this.card.price/100)|format_currency('EUR')}}</h5>
+            {% if this.card.owner != app.user %}
+                <a href="{{ path('app_user_cart_add', {'id': this.card.id}) }}" class=""><button class="btn btn-dark">Ajouter au panier</button></a>
+            {% else %}
+                <a href="{{ path('app_edit_product',{'id':this.card.id}) }}" class=""><button class="btn btn-dark my-2">Modifier</button></a>
+                <a href="#" class=""><button class="btn btn-dark">supprimer</button></a>
+            {% endif %}
+        </div>
+    {# </div> #}
 </div>

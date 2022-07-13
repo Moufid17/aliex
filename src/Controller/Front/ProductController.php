@@ -39,7 +39,7 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/produits/creer', name: 'app_new_product', methods: ['GET','POST'])]
+    #[Route('/produits/creer', name: 'app_new_product', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
         if (!$this->getUser()) {
@@ -50,13 +50,12 @@ class ProductController extends AbstractController
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
-        
-        if($form->isSubmitted() && $form->isValid())
-        {
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $imageFileData = $form->getData()->getImageFile();
             $originalImageName = $imageFileData->getClientOriginalName();
             $fileSize = $imageFileData->getSize();
-            
+
             $this->getUser()->addProduct($product);
             $product->setOwner($this->getUser());
             $product->setImageName($originalImageName);
@@ -68,28 +67,36 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('app_product', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('front/product/new.html.twig', [
+        return $this->renderForm(
+            'front/product/new.html.twig',
+            [
                 'form' => $form,
             ]
         );
     }
 
+<<<<<<< HEAD
     #[Route("/produits/{id}/edit", name: 'app_edit_product', methods: ['GET','POST'])]
     #[IsGranted(ProductVoter::EDIT, 'product',"Vous n'êtes pas autoriser à modifier ce produit.")]
+=======
+    #[Route("/produits/{id}/edit", name: 'app_edit_product', methods: ['GET', 'PUT'])]
+    #[IsGranted(ProductVoter::EDIT, 'product', "Vous n'êtes pas autoriser à modifier ce produit.")]
+>>>>>>> 83ba0c635b24873081f4f56a04d7cf4d02a5626c
     public function edit(Product $product, ProductRepository $productRepository, Request $request, EntityManagerInterface $em): Response
-    {  
+    {
 
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
 
             return $this->redirectToRoute('app_product', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('front/product/edit.html.twig', [
+        return $this->renderForm(
+            'front/product/edit.html.twig',
+            [
                 'form' => $form,
                 'product' => $product,
             ]
@@ -99,7 +106,8 @@ class ProductController extends AbstractController
     #[Route('/produits/{id}', name: 'app_show_product', methods: ['GET','POST'])]
     public function show(Product $product): Response
     {
-        return $this->render('front/product/show.html.twig',
+        return $this->render(
+            'front/product/show.html.twig',
             [
                 'product' => $product,
             ]

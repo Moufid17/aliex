@@ -39,7 +39,6 @@ class RegisterController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // Sending registration mail 
             $email = (new TemplatedEmail())
                 ->from('aliexesgi2022app@gmail.com')
                 ->to($user->getEmail())

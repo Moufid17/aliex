@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
@@ -10,19 +11,23 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 class MailerService extends AbstractController
+
 {
+
     #[Route('/email')]
     public function sendEmail(MailerInterface $mailer): Response
+
+
     {
+        $user = new User();
+
         $email = (new Email())
-            ->from('hello@example.com')
-            ->to('asheton.shamon@fillnoo.com')
-            ->subject('Time for Symfony Mailer!')
-            ->text('Sending emails is fun again!')
-            ->html('<p>See Twig integration for better HTML integration!</p>');
+            ->from('aliexesgi2022app@gmail.com')
+            ->to($user->getEmail())
+            ->subject('Bienvenue sur Aliex')
+            ->text('Bienvenue Sur Aliex')
+            ->html("<p> Bienvenue chez Aliex </p>{$user->getFirstName()}");
 
         $mailer->send($email);
-
-        // ...
     }
 }

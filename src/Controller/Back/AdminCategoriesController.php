@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminCategoriesController extends AbstractController
 {
-    #[Route('/admin/categories', name: 'app_admin_categories_index')]
+    #[Route('/admin/categories', name: 'app_admin_categories_index', methods: ["GET"])]
     public function index(EntityManagerInterface $em): Response
     {
         return $this->render('back/categories/index.html.twig', [
@@ -20,7 +20,7 @@ class AdminCategoriesController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/categories/add', name: 'app_admin_categories_add')]
+    #[Route('/admin/categories/add', name: 'app_admin_categories_add', methods: ["GET", "POST"])]
     public function add(Request $request, EntityManagerInterface $em): Response
     {
         $category = new Category();
@@ -39,7 +39,7 @@ class AdminCategoriesController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/categories/edit/{id}', name: 'app_admin_categories_edit')]
+    #[Route('/admin/categories/edit/{id}', name: 'app_admin_categories_edit', methods: ["GET", "POST" ,"PUT"])]
     public function edit(Category $category, Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(CategoryType::class, $category);
@@ -57,7 +57,7 @@ class AdminCategoriesController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/categories/delete/{id}', name: 'app_admin_categories_delete')]
+    #[Route('/admin/categories/delete/{id}', name: 'app_admin_categories_delete', methods: ["POST", "DELETE"])]
     public function delete(Category $category, Request $request, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('delete_'.$category->getId(), $request->request->get('_token'))) {

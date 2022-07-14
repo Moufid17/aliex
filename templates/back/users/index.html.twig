@@ -4,12 +4,12 @@
 
 {% block content %}
     <div id="layoutSidenav_content">
-        {{ dump(users) }}
+        {{ dump(users[0].roles|length == 0) }}
         <main>
             <div class="container-fluid px-4">
                 <h1 class="mt-4">Users</h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href={{ path('app_admin_index') }}>Dashboard</a></li>
                     <li class="breadcrumb-item active">Users</li>
                 </ol>
                 <div class="card mb-4">
@@ -46,12 +46,17 @@
                                     <td>{{ user.firstname }}</td>
                                     <td>{{ user.lastname }}</td>
                                     <td>{{ user.email }}</td>
-                                    {#<td>{{ user.roles }}</td>
+                                    <td>
+                                        {% if user.roles|length == 0 %}
+                                            ROLE_USER
+                                        {% else %}
+                                            {% for role in user.roles %}
+                                                {{ role }}
+                                            {% endfor %}
+                                        {% endif %}
+                                    </td>
                                     <td>{{ user.products }}</td>
-                                    <td>{{ user.addresses }}</td>#}
-                                    <td>Placeholder</td>
-                                    <td>Placeholder</td>
-                                    <td>Placeholder</td>
+                                    <td>{{ user.addresses }}</td>
                                     <td>
                                         <div class="d-flex justify-content-around">
                                             <a class="d-inline-block"

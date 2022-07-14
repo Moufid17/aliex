@@ -42,7 +42,10 @@ class AdminUsersController extends AbstractController
     #[Route('/admin/users/edit/{id}', name: 'app_admin_users_edit', methods: ["GET", "POST" ,"PUT"])]
     public function edit(User $user, Request $request, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $user, [
+            'user_roles' => $user->getRoles(),
+            //'user_roles' => $this->getUser()->getRoles(),
+        ]);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())

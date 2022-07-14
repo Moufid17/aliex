@@ -20,6 +20,13 @@
                     <p> Aucun produit disponible.</p>
                 </div>
             {% endfor %}
+            
+       <!--pagination-->
+
+         <div class="pagination">
+            </div>
         </div>
-    </div>
-{% endblock %}
+        {{ knp_pagination_render(products, '@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig') }}
+
+        
+   {% endblock %}

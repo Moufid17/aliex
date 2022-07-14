@@ -9,7 +9,6 @@ use App\Form\SearchType;
 use App\Security\ProductVoter;
 use App\Repository\ProductRepository;
 use App\Services\Search;
-use ContainerFRB68Wn\PaginatorInterface_82dac15;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;

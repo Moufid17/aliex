@@ -60,7 +60,7 @@ class AdminCategoriesController extends AbstractController
     #[Route('/admin/categories/delete/{id}', name: 'app_admin_categories_delete')]
     public function delete(Category $category, Request $request, EntityManagerInterface $em): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete_'.$category->getId(), $request->request->get('_token'))) {
             foreach ($category->getProducts() as $product) {
                 $product->setCategory($em->getRepository(Category::class)->findOneBy(['name' => 'Autres']));
             }

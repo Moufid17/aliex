@@ -1,0 +1,16 @@
+{% extends 'back_base.html.twig' %}
+
+{% block title %}Addresses | ADMIN - Aliex{% endblock %}
+
+{% block content %}
+    <div id="layoutSidenav_content">
+        <div class="container-fluid">
+            <h3>Gestion des addresses</h3>
+            <hr>
+            {{ form_start(form) }}
+                {{ form_rest(form) }}
+            <button type="submit">Valider</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller\Front;
+
 use App\Entity\User;
 use App\Entity\Category;
 use App\Entity\Product;
@@ -28,7 +29,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 class ProductController extends AbstractController
 {
     #[Route('/produits', name: 'app_product', methods: ['GET', 'POST'])]
-    public function index(Request $request,EntityManagerInterface $entityManager,): Response
+    public function index(Request $request, EntityManagerInterface $entityManager,): Response
     {
         $search = new Search();
         $form = $this->createForm(SearchType::class, $search);
@@ -36,7 +37,7 @@ class ProductController extends AbstractController
 
         $product = $entityManager->getRepository(Product::class)->findAll();
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $product = $entityManager->getRepository(Product::class)->findBySearch($search);
         }
 
@@ -46,7 +47,7 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/produits/creer', name: 'app_new_product', methods: ['GET','POST'])]
+    #[Route('/produits/creer', name: 'app_new_product', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em, MailerInterface $mailer): Response
     {
         if (!$this->getUser()) {
@@ -59,8 +60,7 @@ class ProductController extends AbstractController
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $imageFileData = $form->getData()->getImageFile();
             $originalImageName = $imageFileData->getClientOriginalName();
             $fileSize = $imageFileData->getSize();
@@ -88,49 +88,53 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('app_product', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('front/product/new.html.twig', [
+        return $this->renderForm(
+            'front/product/new.html.twig',
+            [
                 'form' => $form,
             ]
         );
     }
 
-    #[Route("/produits/{id}/edit", name: 'app_edit_product', methods: ['GET','POST'])]
-    #[IsGranted(ProductVoter::EDIT, 'product',"Vous n'êtes pas autoriser à modifier ce produit.")]
+    #[Route("/produits/{id}/edit", name: 'app_edit_product', methods: ['GET', 'POST'])]
+    #[IsGranted(ProductVoter::EDIT, 'product', "Vous n'êtes pas autoriser à modifier ce produit.")]
     public function edit(Product $product, ProductRepository $productRepository, Request $request, EntityManagerInterface $em, MailerInterface $mailer): Response
     {
 
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
             $email = (new TemplatedEmail())
 
                 ->from('aliexesgi2022app@gmail.com')
                 ->to($this->getUser()->getEmail())
-                ->subject('Votre produit a bien été ajouté')
+                ->subject('Votre produit a bien été modfié')
                 ->htmlTemplate('emails/editProducts.html.twig')
                 ->context([
                     'username' => $this->getUser()->getUsername(),
                     'product_name' => $product->getName(),
-               ]);
+                ]);
             $mailer->send($email);
 
             return $this->redirectToRoute('app_product', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('front/product/edit.html.twig', [
+        return $this->renderForm(
+            'front/product/edit.html.twig',
+            [
                 'form' => $form,
                 'product' => $product,
             ]
         );
     }
 
-    #[Route('/produits/{id}', name: 'app_show_product', methods: ['GET','POST'])]
+    #[Route('/produits/{id}', name: 'app_show_product', methods: ['GET', 'POST'])]
     public function show(Product $product): Response
     {
-        return $this->render('front/product/show.html.twig',
+        return $this->render(
+            'front/product/show.html.twig',
             [
                 'product' => $product,
             ]
@@ -138,9 +142,9 @@ class ProductController extends AbstractController
     }
 
     #[Route('/produits/delete/{id}', name: 'app_delete_product')]
-    public function delete(Product $product, Request $request, EntityManagerInterface $entityManager,MailerInterface $mailer): Response
+    public function delete(Product $product, Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
             $this->getUser()->removeProduct($product);
             $entityManager->remove($product);
             $entityManager->flush();
@@ -149,12 +153,12 @@ class ProductController extends AbstractController
 
                 ->from('aliexesgi2022app@gmail.com')
                 ->to($this->getUser()->getEmail())
-                ->subject('Votre produit a bien été ajouté')
+                ->subject('Votre produit a bien été supprimé')
                 ->htmlTemplate('emails/deleteProducts.html.twig')
                 ->context([
-                'username' => $this->getUser()->getUsername(),
-                'product_name' => $product->getName(),
-            ]);
+                    'username' => $this->getUser()->getUsername(),
+                    'product_name' => $product->getName(),
+                ]);
 
             $mailer->send($email);
         }

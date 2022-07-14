@@ -42,36 +42,14 @@ class ProductController extends AbstractController
             $request->query->getInt("page",1),1
         );
         
-        // $product =$paginator->paginate(
-        //     $entityManager->getRepository(Product::class)->findBySearch($search),
-        //     $request->query->getInt("page",1),12
-        // );
-
-        return $this->render('front/product/index.html.twig', [
-            'products' => $product,
-            'form' => $form->createView(),
-        ]);
-    }
-    /*#[Route('/produits', name: 'app_product', methods: ['GET', 'POST'])]
-    public function index(Request $request,PaginatorInterface_82dac15 $paginator): Response
-    {
-        $search = new Search();
-        $form = $this->createForm(SearchType::class, $search);
-        $form->handleRequest($request);
-
-        $product =$paginator->paginate(
-            $this->repository->findBySearch(),
-            $request->query->getInt(key:"page",default:1),limit:12
-        
-        );
-
        
 
         return $this->render('front/product/index.html.twig', [
             'products' => $product,
             'form' => $form->createView(),
         ]);
-    }*/
+    }
+   
 
     #[Route('/produits/creer', name: 'app_new_product', methods: ['GET','POST'])]
     public function new(Request $request, EntityManagerInterface $em): Response

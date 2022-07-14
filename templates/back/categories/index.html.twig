@@ -3,60 +3,63 @@
 {% block title %}Catégories | ADMIN - Aliex{% endblock %}
 
 {% block content %}
-<div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid px-4">
-            <h1 class="mt-4 d-inline-block">Catégories</h1>
-            <a class="btn btn-dark d-inline-block mt-4 float-end" href="{{ path('app_admin_categories_add') }}">Ajouter</a>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                <li class="breadcrumb-item active">Catégories</li>
-            </ol>
-            <div class="card mb-4">
-                <div class="card-body">
-                    INFORMATIONS
-                    <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                    .
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4 d-inline-block">Catégories</h1>
+                <a class="btn btn-dark d-inline-block mt-4 float-end" href="{{ path('app_admin_categories_add') }}">Ajouter</a>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Catégories</li>
+                </ol>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        INFORMATIONS
+                        <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
+                        .
+                    </div>
                 </div>
-            </div>
-            <!-- TABLES -->
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
-                    CATÉGORIES
-                </div>
-                <div class="card-body">
-                    <table id="datatablesSimple">
-                        <thead>
+                <!-- TABLES -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        CATÉGORIES
+                    </div>
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            <thead>
                             <tr>
                                 <th>Nom</th>
                                 <th></th>
                             </tr>
-                        </thead>
-                        <tbody>
-                        {% for category in categories %}
-                            <tr>
-                                <td>{{ category.name }}</td>
-                                <td>
-                                    <div class="d-flex justify-content-around">
-                                        <a class="d-inline-block" href="{{ path('app_admin_categories_edit', {'id': category.id }) }}">
-                                            <span class="icon fa fa-pencil" style="font-size:22px"></span>
-                                        </a>
-                                        <form class="d-inline-block px-3" method="post" action="{{ path('app_admin_categories_delete', {'id': category.id }) }}" onsubmit="return confirm('Are you sure you want to delete this category ?');">
-                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
-                                            <button class="icon fa fa-trash" style="font-size:22px"></button>
-                                        </form>
-
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            {% for category in categories %}
+                                <tr>
+                                    <td>{{ category.name }}</td>
+                                    <td>
+                                        <div class="d-flex justify-content-around">
+                                            <a class="d-inline-block"
+                                               href="{{ path('app_admin_categories_edit', {'id': category.id }) }}">
+                                                <span class="icon fa fa-pencil" style="font-size:22px"></span>
+                                            </a>
+                                            <form class="d-inline-block px-3" method="post"
+                                                  action="{{ path('app_admin_categories_delete', {'id': category.id }) }}"
+                                                  onclick="return confirm('Are you sure you want to delete this category ?');">
+                                                <input type="hidden" name="_token"
+                                                       value="{{ csrf_token('delete' ~ category.id) }}">
+                                                <button type="submit" class="icon fa fa-trash" style="font-size:22px"></button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+                <!-- TABLES -->
             </div>
-            <!-- TABLES -->
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
 {% endblock %}

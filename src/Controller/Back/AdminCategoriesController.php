@@ -34,8 +34,26 @@ class AdminCategoriesController extends AbstractController
             return $this->redirectToRoute('app_admin_categories_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('back/categories/form.html.twig', [
-            'form' => $form->createView(),
+        return $this->renderForm('back/categories/form.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/admin/categories/edit/{id}', name: 'app_admin_categories_edit')]
+    public function edit(Category $category, Request $request, EntityManagerInterface $em): Response
+    {
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $em->flush();
+            return $this->redirectToRoute('app_admin_categories_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('back/categories/form.html.twig', [
+            'form' => $form,
+            'category' => $category,
         ]);
     }
 
@@ -51,23 +69,5 @@ class AdminCategoriesController extends AbstractController
             $em->flush();
         }
         return $this->redirectToRoute('app_admin_categories_index', [], Response::HTTP_SEE_OTHER);
-    }
-
-    #[Route('/admin/categories/edit/{id}', name: 'app_admin_categories_edit')]
-    public function edit(Category $category, Request $request, EntityManagerInterface $em): Response
-    {
-        $form = $this->createForm(CategoryType::class, $category);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $em->flush();
-            return $this->redirectToRoute('app_admin_categories_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('back/categories/form.html.twig', [
-            'form' => $form,
-            'category' => $category,
-        ]);
     }
 }

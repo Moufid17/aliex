@@ -44,12 +44,16 @@ class RegisterController extends AbstractController
                 ->to($user->getEmail())
                 ->subject('Bienvenue sur Aliex')
                 ->text('Bienvenue Sur Aliex')
-                ->htmlTemplate('emails/register.html.twig');
+                ->htmlTemplate('emails/register.html.twig')
+                ->context([
+                'username' => $user->getUsername(),
+            ]);
             $mailer->send($email);
 
 
             return $this->redirectToRoute('app_account', [], Response::HTTP_SEE_OTHER);
         }
+
 
         return $this->render('front/register/index.html.twig', [
             'register_form' => $register_form->createView(),

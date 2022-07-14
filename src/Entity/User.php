@@ -193,7 +193,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function __unserialize($serialized)
-    {   
+    {
         # It is important to init the params below before return them.
         $this->id = $serialized[0];
         $this->email = $serialized[1];
@@ -202,7 +202,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->id,
             $this->email,
             $this->password,
-        );        
+        );
     }
 
     /**

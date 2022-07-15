@@ -4,10 +4,13 @@
 
 {% block content %}
     <div id="layoutSidenav_content">
-        {{ dump(users[0].roles|length == 0) }}
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Users</h1>
+                <h1 class="mt-4 d-inline-block">Users</h1>
+                <a class="btn btn-dark d-inline-block mt-4 float-end" href="{{ path('app_admin_users_add_admin') }}">Ajouter
+                    un admin</a>
+                <a class="btn btn-dark d-inline-block mt-4 float-end mx-1"
+                   href="{{ path('app_admin_users_add_user') }}">Ajouter un utilisateur</a>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href={{ path('app_admin_index') }}>Dashboard</a></li>
                     <li class="breadcrumb-item active">Users</li>
@@ -33,9 +36,7 @@
                                 <th>Prénom</th>
                                 <th>Nom</th>
                                 <th>Email</th>
-                                <th>Roles</th>
-                                <th>Produits</th>
-                                <th>Adresse</th>
+                                {# <th>Roles</th> #}
                                 <th></th>
                             </tr>
                             </thead>
@@ -46,7 +47,7 @@
                                     <td>{{ user.firstname }}</td>
                                     <td>{{ user.lastname }}</td>
                                     <td>{{ user.email }}</td>
-                                    <td>
+                                    {#                                    <td>
                                         {% if user.roles|length == 0 %}
                                             ROLE_USER
                                         {% else %}
@@ -54,9 +55,9 @@
                                                 {{ role }}
                                             {% endfor %}
                                         {% endif %}
-                                    </td>
-                                    <td>{{ user.products }}</td>
-                                    <td>{{ user.addresses }}</td>
+                                    </td> #}
+                                    {#                                    <td>{{ user.products }}</td>
+                                    <td>{{ user.addresses }}</td> #}
                                     <td>
                                         <div class="d-flex justify-content-around">
                                             <a class="d-inline-block"
@@ -65,12 +66,20 @@
                                             </a>
                                             <form class="d-inline-block px-3" method="post"
                                                   action="{{ path('app_admin_users_delete', {'id': user.id }) }}"
-                                                  onsubmit="return confirm('Are you sure you want to delete this category ?');">
+                                                  onsubmit="return confirm('Êtes vous sûr de vouloir supprimer cet utilisateur ?');">
                                                 <input type="hidden" name="_token"
-                                                       value="{{ csrf_token('delete_' ~ user.id) }}">
+                                                       value="{{ csrf_token('delete' ~ user.id) }}">
                                                 <button class="border-0 bg-transparent" style="font-size:22px"><span
                                                             class="fa fa-trash"></span></button>
                                             </form>
+                                            {% if "ROLE_ADMIN" in user.roles == false %}
+                                                <a class="d-inline-block"
+                                                   href="{{ path('app_admin_users_ban', {'id': user.id }) }}"
+                                                   onclick="return confirm('Êtes vous sûr de vouloir bannir/débannir cet utilisateur ?');">
+                                                    <span class="fa fa-ban"
+                                                          style="font-size:22px; color: {{ user.banned ? 'black' : 'red' }};"></span>
+                                                </a>
+                                            {% endif %}
                                         </div>
                                     </td>
                                 </tr>

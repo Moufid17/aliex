@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,15 +27,27 @@ class UserType extends AbstractType
         }
         //dd($roles);
         $builder
-            ->add('email')
-            ->add('roles', CollectionType::class, [
+            ->add('email', EmailType::class, [
+                'required' => true,
+            ])
+            ->add('firstname', TextType::class, [
+                'required' => true,
+            ])
+            ->add('lastname', TextType::class, [
+                'required' => true,
+            ])
+            ->add('username', TextType::class, [
+                'required' => true,
+            ])
+/*            ->add('roles', CollectionType::class, [
                 'label' => 'Role',
 /*                'entry_options' => Array(
                     //'label' => false,
                     'choices' => $roles
                 ),
-                'entry_type' => ChoiceType::class*/
+                'entry_type' => ChoiceType::class
             ])
+*/
 /*            ->add('roles', ChoiceType::class, array(
                 'label' => 'Rôle',
                 //'choices' => $options,
@@ -44,9 +57,6 @@ class UserType extends AbstractType
                 //'expanded' => false,
                 'required' => true,
             ))*/
-            ->add('firstname')
-            ->add('lastname')
-            ->add('username')
         ;
     }
 
@@ -54,7 +64,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-                'user_roles' => array(),
+            'user_roles' => array(),
         ]);
     }
 }

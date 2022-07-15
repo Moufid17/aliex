@@ -42,10 +42,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Address::class)]
     private $addresses;
 
+    #[ORM\Column(type: 'boolean')]
+    private $banned;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
         $this->addresses = new ArrayCollection();
+        $this->banned = false;
     }
 
     public function getId(): ?int
@@ -231,6 +235,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $address->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBanned(): ?bool
+    {
+        return $this->banned;
+    }
+
+    public function setBanned(bool $banned): self
+    {
+        $this->banned = $banned;
 
         return $this;
     }

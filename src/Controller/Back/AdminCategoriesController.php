@@ -5,9 +5,11 @@ namespace App\Controller\Back;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminCategoriesController extends AbstractController
@@ -58,11 +60,21 @@ class AdminCategoriesController extends AbstractController
     }
 
     #[Route('/admin/categories/delete/{id}', name: 'app_admin_categories_delete', methods: ["POST", "DELETE"])]
-    public function delete(Category $category, Request $request, EntityManagerInterface $em): Response
+    public function delete(Category $category, Request $request, EntityManagerInterface $em, MailerInterface $mailer): Response
     {
         if ($this->isCsrfTokenValid('delete_'.$category->getId(), $request->request->get('_token'))) {
             foreach ($category->getProducts() as $product) {
                 $product->setCategory($em->getRepository(Category::class)->findOneBy(['name' => 'Autres']));
+                $email = (new TemplatedEmail())
+                    ->from('aliexesgi2022app@gmail.com')
+                    ->to($product->getOwner()->getEmail())
+                    ->subject('Bienvenue sur Aliex')
+                    ->text('Bienvenue Sur Aliex')
+                    ->htmlTemplate('emails/changeCategoryProducts.html.twig')
+                    ->context([
+                        'username' => $product->getOwner()->getUsername(),
+                    ]);
+                $mailer->send($email);
             }
             //email to user having the product $product
             $em->remove($category);

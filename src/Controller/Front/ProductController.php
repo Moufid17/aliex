@@ -38,7 +38,7 @@ class ProductController extends AbstractController
 
         $product =$paginator->paginate(
             $product,
-            $request->query->getInt("page",1),1
+            $request->query->getInt("page",1),9
         );
         
        

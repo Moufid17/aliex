@@ -68,11 +68,13 @@ class AdminCategoriesController extends AbstractController
                 $email = (new TemplatedEmail())
                     ->from('aliexesgi2022app@gmail.com')
                     ->to($product->getOwner()->getEmail())
-                    ->subject('Bienvenue sur Aliex')
-                    ->text('Bienvenue Sur Aliex')
+                    ->subject('La catégorie de votre produit a été modifié')
+                    ->text('La catégorie de votre produit a été modifié')
                     ->htmlTemplate('emails/changeCategoryProducts.html.twig')
                     ->context([
                         'username' => $product->getOwner()->getUsername(),
+                        'product_name' => $product->getName(),
+
                     ]);
                 $mailer->send($email);
             }

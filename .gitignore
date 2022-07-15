@@ -23,7 +23,7 @@ aliex.session.sql
 
 ###> folders ###
 /.vscode/
-/public/images/
+# /public/images/
 /migrations_cp/
 ###< folders ###
 

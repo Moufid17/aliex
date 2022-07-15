@@ -21,15 +21,15 @@
                     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-3" autocomplete="email" required autofocus>
                 </div>
                 <div class="col-12">
-                    <label for="inputPassword"><strong>Password</strong></label>
+                    <label for="inputPassword"><strong>Mot de passe</strong></label>
                     <input type="password" name="password" id="inputPassword" class="form-control btn-sm mb-1" autocomplete="current-password" required>
                 </div>
                 <div class="mb-3">
-                    <span><a class="text-decoration-none" href="{{ path('app_register')}}">ou créez un compte</a></span>
+                    <span><a class="text-decoration-none" href="{{ path('app_register')}}"> Ou créer un compte</a></span>
+                    <span><a class="text-decoration-none float-end" href="{{ path('app_forgot_password_request')}}" > Mot de passe oublié </a></span>
                 </div>
                 <input type="hidden" name="_csrf_token"
-                    value="{{ csrf_token('authenticate_') }}"
-                >
+                    value="{{ csrf_token('authenticate_') }}">
             </div>
             {#
                 Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.

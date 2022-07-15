@@ -30,7 +30,6 @@
 
 [class^="icon-"], [class*=" icon-"] {
 	font-family: 'icomoon';
-	speak: none;
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;
@@ -491,3 +490,18 @@ input.account-input[type=text]:focus {
 					.add-event.button:hover {
 						background: #35aadc;
 					}
+
+.form-check{
+	background-color: #f4f8ff;
+	padding: 20px 65px;
+	margin-top: 7px;
+}
+
+.col-form-label{
+	font-weight:bold;
+}
+
+.order-summary{
+	background: #f4f8ff;
+	padding: 20px;
+}

@@ -29,11 +29,11 @@
                     <td>
                         <div class="d-flex justify-content-around">
                             <a class="d-inline-block" href="{{ path('app_account_user_address_edit', {'id': address.id }) }}">
-                                <span class="icon fontawesome-pencil account-scnd-font-color" style="font-size:22px"></span>
+                                <span class="icon fontawesome-pencil" style="font-size:22px; color:black;"></span>
                             </a>
                             <form class="d-inline-block px-3" method="post" action="{{ path('app_account_user_address_delete', {'id': address.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ address.id) }}">
-                                <button class="icon fontawesome-trash account-scnd-font-color border-0" style="font-size:22px"></button>
+                                <button class="icon fontawesome-trash border-0" style="font-size:22px"></button>
                             </form>
                         </div>
                     </td>

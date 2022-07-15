@@ -54,7 +54,7 @@
             <div class="float-right">
                 <p><b>Nombre de produit: </b>{{ datas|length }}<br></p>
                 <p><b>Total de mon panier : </b>{{ (total/100)|format_currency('EUR') }}<br></p>
-                <a href="#" class="btn btn-dark btn-block mt-2 mx-auto">Valider mon panier</a>
+                <a href="{{ path('app_order') }}" class="btn btn-dark btn-block mt-2 mx-auto">Valider mon panier</a>
             </div>
         </div>
         {% else %}

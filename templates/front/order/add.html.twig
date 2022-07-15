@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement de ma commande - Aliex{% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-4">
+    <h3>Mon récapitulatif</h3>
+    <p>Vérifier vos informations avant de payer</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Mon addresse de livraison</strong>
+            <div class="form-check mt-4">
+                {{address|raw}}
+            </div>
+            <hr>
+            <strong>Mon transporter</strong>
+            <div class="form-check">
+                {{ shippingMode.name }}<br>
+                {{ shippingMode.description }}<br>
+                {{ shippingMode.price|format_currency('EUR') }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="text-center">
+                <b>Ma commande</b>
+            </div>
+            <div class="order-summary">
+                {% set total = null %}
+                {% for key,element in cart %}
+                <div class="row {% if key > 0 %}mt-2{% endif %}">
+                    <div class="col-3">
+                        <img class="card-img-top w-100" src="{{ vich_uploader_asset(element.product, 'imageFile') }}" alt="{{element.product.name}}" height="75px">
+                    </div>
+                    <div class="col-7 my-auto">
+                        <strong>{{ element.product.name}}</strong><br>
+                        <small>
+                            {{ element.product.name}}<br>
+                            x {{ element.qte }}
+                        </small>
+                    </div>
+                    <div class="col-2 my-auto">
+                        {{ (((element.product.price / 100)* element.qte)|format_currency('EUR')) }}
+                    </div>
+                </div>
+                {% set total = total + (element.product.price * element.qte) %}
+                {% endfor %}
+            </div>
+            <hr>
+            <strong>Sous-total : </strong>{{ ( total / 100)|format_currency('EUR') }}<br>
+            <strong>Livraison : </strong>{{ (shippingMode.price)|format_currency('EUR') }}<br>
+            <hr>
+            <strong>Total : </strong>{{ ( (total / 100) + shippingMode.price)|format_currency('EUR') }}<br>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <form action="{{ path('checkout', {'reference':reference }) }}">
+            <button class="col-6 btn btn-dark btn-block" type="submit" id="checkout-button">Payer | {{ ( (total / 100) + shippingMode.price)|format_currency('EUR') }}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -52,15 +52,17 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid())
-        {
-            $imageFileData = $form->getData()->getImageFile();
-            $originalImageName = $imageFileData->getClientOriginalName();
-            $fileSize = $imageFileData->getSize();
+        {   
+            if ($form->getData()->getImageFile()){
+                $imageFileData = $form->getData()->getImageFile();
+                $originalImageName = $imageFileData->getClientOriginalName();
+                $fileSize = $imageFileData->getSize();
+                $product->setImageName($originalImageName);
+                $product->setImageSize($fileSize);
+            }
             
             $this->getUser()->addProduct($product);
             $product->setOwner($this->getUser());
-            $product->setImageName($originalImageName);
-            $product->setImageSize($fileSize);
 
             $em->persist($product);
             $em->flush();

@@ -38,6 +38,11 @@ class Address
     #[ORM\Column(type: 'string', length: 255)]
     private $company;
 
+    public function __toString()
+    {
+        return $this->getName().'[br]'.$this->getStreet().'[br]'.$this->getCity().'[br]'.$this->getCodepostal().' - '.$this->getCountry();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

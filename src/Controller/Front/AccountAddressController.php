@@ -3,6 +3,7 @@
 namespace App\Controller\Front;
 
 use App\Entity\Address;
+use App\Services\Cart;
 use App\Form\AccountAddressType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +20,7 @@ class AccountAddressController extends AbstractController
     }
 
     #[Route('/mon-compte/addresses-add', name: 'app_account_user_address_add')]
-    public function add(EntityManagerInterface $entityManager, Request $request): Response
+    public function add(EntityManagerInterface $entityManager, Request $request, Cart $cart): Response
     {
         $address = new Address();
         $form = $this->createForm(AccountAddressType::class, $address);
@@ -31,6 +32,10 @@ class AccountAddressController extends AbstractController
             $entityManager->persist($address);
             // $entityManager->persist($this->getUser());
             $entityManager->flush();
+
+            if($cart->get()){
+                return $this->redirectToRoute('app_order', [], Response::HTTP_SEE_OTHER);
+            }
 
             return $this->redirectToRoute('app_account_user_address', [], Response::HTTP_SEE_OTHER);
         }

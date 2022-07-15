@@ -12,6 +12,7 @@ use App\Repository\ProductRepository;
 use App\Services\Search;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,11 +26,12 @@ use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mailer\Transport\Transports;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
+use Knp\Component\Pager\PaginatorInterface;
 
 class ProductController extends AbstractController
 {
     #[Route('/produits', name: 'app_product', methods: ['GET', 'POST'])]
-    public function index(Request $request, EntityManagerInterface $entityManager,): Response
+    public function index(Request $request,EntityManagerInterface $entityManager, PaginatorInterface  $paginator): Response
     {
         $search = new Search();
         $form = $this->createForm(SearchType::class, $search);
@@ -37,15 +39,23 @@ class ProductController extends AbstractController
 
         $product = $entityManager->getRepository(Product::class)->findAll();
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted() && $form->isValid()){
             $product = $entityManager->getRepository(Product::class)->findBySearch($search);
-        }
+        };
+
+        $product =$paginator->paginate(
+            $product,
+            $request->query->getInt("page",1),9
+        );
+
+
 
         return $this->render('front/product/index.html.twig', [
             'products' => $product,
             'form' => $form->createView(),
         ]);
     }
+
 
     #[Route('/produits/creer', name: 'app_new_product', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em, MailerInterface $mailer): Response
@@ -64,7 +74,7 @@ class ProductController extends AbstractController
             $imageFileData = $form->getData()->getImageFile();
             $originalImageName = $imageFileData->getClientOriginalName();
             $fileSize = $imageFileData->getSize();
-
+            
             $this->getUser()->addProduct($product);
             $product->setOwner($this->getUser());
             $product->setImageName($originalImageName);

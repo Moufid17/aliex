@@ -12,7 +12,7 @@
                 <div class="w-75">
                     {{form_row(form)}}
                 </div>
-                <button class="btn btn-dark btn-block w-75" type="submit">Filtrer</button> 
+                <button class="btn btn-dark btn-block w-75" type="submit">Filtrer</button>
             {{form_end(form)}}
         </div>
         <div class="col-md-9">
@@ -20,9 +20,17 @@
                 {% for product in products %}
                     {{ component('card', {'id' : product.id}) }}
                 {% else %}
+                <div class="col-6">
                     <p> Aucun produit disponible.</p>
-                {% endfor %}
+                </div>
+            {% endfor %}
+
+       <!--pagination-->
+
+         <div class="pagination">
             </div>
         </div>
-    </div>
-{% endblock %}
+        {{ knp_pagination_render(products, '@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig') }}
+
+
+   {% endblock %}

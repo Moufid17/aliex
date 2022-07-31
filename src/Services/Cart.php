@@ -34,7 +34,9 @@ class Cart
         $cart = $this->session->get('cart', []);
 
         if($cart[$id] == 1){
-            $cart = $this->delete($id);            
+            $cart = $this->session->get('cart', []);
+            unset($cart[$id]);
+            return $this->session->set('cart', $cart);            
         }
         else if(!empty($cart[$id]) && $cart[$id] > 1){
             $cart[$id]--;

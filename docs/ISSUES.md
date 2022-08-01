@@ -64,8 +64,17 @@
         2. [youtube - Tech Wall](https://www.youtube.com/watch?v=Yd_qvZpD-L4)
 
 
-
-
+### [.env.local with docker](https://docs.docker.com/compose/environment-variables/) 
+- solution:
+    - Default value in .env
+    - In `.env.local`:
+        ```
+        APP_ENV=...
+        APP_SECRET=...
+        DATABASE_URL=...
+        STRIPE_API_KEY=...
+        ```
+    - run : `docker-compose --env-file .env.local up -d`
 
 
 

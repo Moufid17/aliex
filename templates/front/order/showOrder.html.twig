@@ -24,7 +24,6 @@
         </tr>
     </thead>
     <tbody>
-        {# {% set subTotal = null %} #}
         {% for data in datas.OrderDetails %}
         <tr>
             <td>{{data.product}}</td>
@@ -32,14 +31,13 @@
             <td>{{(data.price / 100)|format_currency('EUR')}}</td>
             <td>{{(data.total / 100)|format_currency('EUR')}}</td>
         </tr>
-        {# {% set subTotal = subTotal + data.total %} #}
         {% endfor %}
     </tbody>
     </table>
     <div class="float-end">
         <strong>Sous-total : </strong>{{(datas.getTotal / 100)|format_currency('EUR')}}<br>
         <strong>Livraison : </strong>{{(datas.carrierPrice)|format_currency('EUR')}}<br>
-        <strong>Total : </strong>{{( (subTotal / 100) + (datas.carrierPrice) )|format_currency('EUR')}}<br>
+        <strong>Total : </strong>{{( (datas.getTotal / 100) + (datas.carrierPrice) )|format_currency('EUR')}}<br>
     </div>
     {% endif %}
 </div>

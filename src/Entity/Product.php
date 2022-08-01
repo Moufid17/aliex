@@ -22,12 +22,28 @@ class Product
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @Assert\Regex(
+     *     pattern     = "/^[a-zA-Z\s\.]*$/",
+     *     message="Le nom du produit est invalide."
+     * )
+     */
     private $name;
 
     #[ORM\Column(type: 'float')]
+    /**
+     * @Assert\Regex(
+     *     pattern     = "/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/",
+     *     message="Le poids du produit est incorrect."
+     * )
+     */
     private $weight;
 
     #[ORM\Column(type: 'text')]
+    /**
+     * @Assert\Regex("/^\w+/")
+     * message="Description invalide."
+     */
     private $description;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
@@ -38,6 +54,12 @@ class Product
     private $owner;
 
     #[ORM\Column(type: 'float')]
+    /**
+     * @Assert\Regex(
+     *     pattern     = "/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/",
+     *     message="Le prix du produit est incorrect."
+     * )
+     */
     private $price;
 
     #[Vich\UploadableField(mapping: "product_image", fileNameProperty: "imageName", size: "imageSize")]

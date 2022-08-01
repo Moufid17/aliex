@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes commandes - Aliex{% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-4 mb-4">
+    <h3>Mes commandes</h3>
+    <a class="btn btn-dark" href="{{path('app_account')}}">Retour</a>
+    <hr>
+    {% if datas|length > 0 %}
+        <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Réference</th>
+            <th scope="col">Date</th>
+            <th scope="col">Produit(s)</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Transporteur</th>
+            <th scope="col">Montant</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key,data in datas %}
+            <tr>
+                <td>{{key}}</th>
+                <td><span class="badge badge-dark">{{data.reference}}</span></td>
+                <td>{{data.createdAt|date('d/m/Y à H:i')}}</td>
+                <td>{{data.orderDetails|length}}</td>
+                <td>{{data.shippingAddress|raw}}</td>
+                <td>{{data.carrierName}}</td>
+                <td>{{(( (data.carrierPrice) + (data.getTotal /100) ))|format_currency('EUR')}}</td>
+                <td><a href="{{path('app_account_order_show', {'id': data.reference }) }}">Voir ma commande<a></td>
+                {# <td><a href="{{path('app_account')}}" class="icon fontawesome-eye"><a></td> #}
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    {% else %}
+        Vous n'aviez aucune commande.
+    {% endif %}
+</div>
+{% endblock %}

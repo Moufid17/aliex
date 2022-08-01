@@ -41,12 +41,20 @@ class Order
     #[ORM\Column(type: 'string', length: 255)]
     private $reference;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable:true)]
     private $stripeCheckoutId;
 
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
+    }
+
+    public function getTotal(){
+        $total = null;
+        foreach($this->orderDetails->getValues() as $product){
+            $total = $total + ($product->getPrice() * $product->getQte());
+        }
+        return $total;
     }
 
     public function getId(): ?int

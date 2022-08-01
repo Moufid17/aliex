@@ -19,6 +19,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
+    /**
+     * @Assert\Regex(
+     *     pattern="\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b",
+     *     message="Votre email est incorrect."
+     * )
+     */
     private $email;
 
     #[ORM\Column(type: 'json')]
@@ -27,10 +33,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $firstname;
 
     #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @Assert\Regex(
+     *     pattern     = "/^[a-zA-Z\s\.]*$/",
+     *     htmlPattern = "[a-zA-Z]+",
+     *     message="Votre prenom ne peut contenir autre que des lettres."
+     * )
+     */
+    private $firstname;
+    
+    #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @Assert\Regex(
+     *     pattern     = "/^[a-zA-Z\s\.]*$/",
+     *     htmlPattern = "[a-zA-Z]+",
+     *     message="Votre nom ne peut contenir autre que des lettres."
+     * )
+     */
     private $lastname;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -246,6 +267,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->orders;
     }
+
+        /**
+     * @return Collection<int, Order>
+     */
+    public function getOrdersPaid(): Collection
+    {
+        $ordersPaid = new ArrayCollection();
+        foreach($this->orders as $order) {
+            if($order->getIsPaid() == True) {
+                $ordersPaid[] = $order;
+            }
+        }
+        return $ordersPaid;
+    }
+
 
     public function addOrder(Order $order): self
     {

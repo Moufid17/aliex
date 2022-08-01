@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande - Aliex{% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-4">
+    <h4>Commande N° <strong>{{ datas.reference }}</strong></h4>
+    <a class="btn btn-dark" href="{{path('app_account_order')}}">Retour</a>
+    <hr>
+    {% if datas|length > 0 %}
+    </p>
+        <strong>Date de commande : </strong>{{datas.createdAt|date('d/m/Y à H:i')}}<br>
+        <strong>Référence de commande : </strong> {{datas.reference}}<br>
+        <strong>Transporteur : </strong>{{datas.carrierName}}<br>
+    </p>
+    <hr>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">Produit(s)</th>
+        <th scope="col">Quantité</th>
+        <th scope="col">Prix Unintaire</th>
+        <th scope="col">Montant</th>
+        </tr>
+    </thead>
+    <tbody>
+        {# {% set subTotal = null %} #}
+        {% for data in datas.OrderDetails %}
+        <tr>
+            <td>{{data.product}}</td>
+            <td>{{data.qte}}</td>
+            <td>{{(data.price / 100)|format_currency('EUR')}}</td>
+            <td>{{(data.total / 100)|format_currency('EUR')}}</td>
+        </tr>
+        {# {% set subTotal = subTotal + data.total %} #}
+        {% endfor %}
+    </tbody>
+    </table>
+    <div class="float-end">
+        <strong>Sous-total : </strong>{{(datas.getTotal / 100)|format_currency('EUR')}}<br>
+        <strong>Livraison : </strong>{{(datas.carrierPrice)|format_currency('EUR')}}<br>
+        <strong>Total : </strong>{{( (subTotal / 100) + (datas.carrierPrice) )|format_currency('EUR')}}<br>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

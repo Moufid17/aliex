@@ -45,6 +45,23 @@ class OrderRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Order[] Returns an array of Order objects
+     */
+    public function findByOrderValidate($owner)
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.owner = :owner')
+            ->setParameter('owner', $owner)
+            ->andWhere('o.isPaid = True')
+            ->orderBy('o.id', 'DESC')
+            // ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
     // /**
     //  * @return Order[] Returns an array of Order objects
     //  */

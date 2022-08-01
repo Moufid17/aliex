@@ -4,6 +4,11 @@
 
 {% block content %}
 <div class="container-fluid pt-4">
-    <h2>Paiement echoué</h2>
+    <h2> Echec de paiement </h2>
+    <p>
+        Bonjour {{ datas.user.firstname }} {{ datas.user.lastname }},<br>
+        Le paiement de votre commande n° {{datas.order.reference}} a échoué.<br>
+        Veillez réessayer en cliquant <a href="{{path('app_order')}}">ici</a>.
+    </p>
 </div>
 {% endblock %}

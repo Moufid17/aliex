@@ -15,10 +15,14 @@ use Doctrine\ORM\EntityManagerInterface;
 class OrderController extends AbstractController
 {
     #[Route('/mon-compte/commande', name: 'app_order')]
-    public function index(Cart $cart, Request $request): Response
+    public function index(Cart $cart): Response
     {
-        if(!$this->getUser()->getAddresses()->getValues()){
+        if(!$this->getUser()->getAddresses()->getValues() ){
             return $this->redirectToRoute('app_account_user_address_add');
+        }
+
+        if(empty($cart->getAll())){
+            return $this->redirectToRoute('app_account');
         }
 
         $form = $this->createForm(OrderType::class,null,[
@@ -81,7 +85,6 @@ class OrderController extends AbstractController
                 $entityManager->persist($orderDetails);
             }
 
-
             $entityManager->flush();
             
             return $this->render('front/order/add.html.twig', [
@@ -94,40 +97,5 @@ class OrderController extends AbstractController
 
         return $this->redirectToRoute('app_user_cart_index', [], Response::HTTP_SEE_OTHER);
 
-    }
-
-
-    #[Route('/payment-success/{reference}', name: 'app_payment_success', methods:['GET'])]
-    public function success($reference, EntityManagerInterface $entityManager): Response
-    {   
-        $order = $entityManager->getRepository(Order::class)->findOneBy(['reference'=>$reference]);
-        
-        if(!$order || $order->getOwner() == $this->getUser()){
-            return $this->redirectToRoute('default_index');
-        }
-
-        if(!$order->getIsPaid()){
-            $order->setIsPaid(1);
-            $entityManager->flush();
-
-            // Send mail to user.
-        }
-
-        return $this->render('front/order/success.html.twig',
-        );
-    }
-
-
-    #[Route('/payment-error/{reference}', name: 'app_payment_error', methods:['GET'])]
-    public function error($reference, EntityManagerInterface $entityManager): Response
-    {   
-        $order = $entityManager->getRepository(Order::class)->findOneBy(['reference'=>$reference]);
-        if(!$order || $order->getOwner() == $this->getUser()){
-            return $this->redirectToRoute('default_index');
-        }
-
-        
-        return $this->render('front/order/fail.html.twig',
-        );
     }
 }

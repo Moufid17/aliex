@@ -35,7 +35,7 @@ class Address
     #[ORM\JoinColumn(nullable: false)]
     private $owner;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable:true)]
     private $company;
 
     public function __toString()
